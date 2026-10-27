@@ -17,7 +17,7 @@
 </script>
 
 <!-- ── SEO ── -->
-<title>OceanSide Properties | International</title>
+<title>OceanSide Properties | Riviera Maya — Playa del Carmen & Tulum</title>
 
 <!-- ── FAVICON ── -->
 <meta name="theme-color" content="#F0F2F4">
@@ -42,18 +42,18 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dedalusmx.github.io/Oceanside/">
 <meta property="og:site_name" content="OceanSide Properties">
-<meta property="og:title" content="OceanSide Properties | International">
+<meta property="og:title" content="OceanSide Properties | Riviera Maya">
 <meta property="og:description" content="Find your place. Feel your freedom. Personal real estate guidance in the Riviera Maya with Erika Salazar.">
 <meta property="og:image" content="https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="OceanSide Properties — International">
+<meta property="og:image:alt" content="OceanSide Properties — Riviera Maya">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_MX">
 
 <!-- ── TWITTER CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OceanSide Properties | International">
+<meta name="twitter:title" content="OceanSide Properties | Riviera Maya">
 <meta name="twitter:description" content="Personal real estate guidance in Playa del Carmen, Tulum & the Riviera Maya.">
 <meta name="twitter:image" content="https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png">
 
@@ -529,6 +529,82 @@ footer{padding:64px 6% 48px;background:var(--char);display:flex;flex-direction:c
 #foBtn{padding:15px 36px;background:var(--char);color:var(--ivory);border:none;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
 #foBtn:hover{background:var(--turq);color:var(--char)}
 
+/* ══════════ Áreas · Fall in Love with the Riviera Maya ══════════ */
+.area-g{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.area-c{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--sand);display:flex;align-items:flex-end;isolation:isolate}
+.area-c.no-img{background-color:var(--sand);background-image:repeating-linear-gradient(0deg,rgba(240,242,244,.14) 0 1px,transparent 1px 9px),repeating-linear-gradient(0deg,rgba(41,43,41,.014) 0 2px,transparent 2px 37px)}
+.area-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transform:scale(1.02);transition:transform 1.2s var(--ease),filter .6s}
+.area-c:hover .area-img{transform:scale(1.07)}
+.area-ov{position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(41,43,41,.62) 0%,rgba(41,43,41,.18) 45%,rgba(41,43,41,0) 70%)}
+.area-c.no-img .area-ov{display:none}
+.area-body{padding:28px 26px 26px;color:var(--ivory)}
+.area-c.no-img .area-body{color:var(--char)}
+.area-nm{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(26px,2.3vw,32px);line-height:1.1;margin-bottom:10px}
+.area-nm::after{content:'';display:block;width:28px;height:2px;background:var(--turq);margin-top:14px;transition:width .6s var(--ease)}
+.area-c:hover .area-nm::after{width:64px}
+.area-tx{font-size:14px;line-height:1.7;opacity:.9;margin-bottom:18px}
+.area-lk{background:none;border:none;padding:0 0 3px;border-bottom:2px solid var(--turq);font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:inherit;cursor:pointer;transition:color .25s}
+.area-lk:hover{color:var(--turq)}
+.area-lk::before{content:'';position:absolute;inset:0}          /* toda la tarjeta es clicable */
+@media(max-width:1024px){.area-g{grid-template-columns:repeat(2,1fr)}.area-c{aspect-ratio:4/5}}
+@media(max-width:600px){
+  .area-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -6%;padding:0 6% 8px;scrollbar-width:none}
+  .area-g::-webkit-scrollbar{display:none}
+  .area-c{flex:0 0 82%;scroll-snap-align:start;aspect-ratio:4/5}
+}
+
+/* Ficha del área */
+#areaModal{position:fixed;inset:0;z-index:600;background:rgba(41,43,41,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+#areaModal.open{opacity:1;pointer-events:auto}
+.am-box{background:var(--ivory);width:100%;max-width:920px;max-height:calc(100vh - 48px);overflow:auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);position:relative;transform:translateY(18px);transition:transform .45s var(--ease)}
+#areaModal.open .am-box{transform:none}
+.am-img{background:var(--sand);min-height:100%;aspect-ratio:4/5;overflow:hidden}
+.am-img img{width:100%;height:100%;object-fit:cover;display:block}
+.am-box.no-img{grid-template-columns:1fr;max-width:620px}
+.am-box.no-img .am-img{display:none}
+.am-body{padding:58px 48px 44px;display:flex;flex-direction:column}
+.am-ey{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.am-name{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(32px,3.2vw,44px);color:var(--char);line-height:1.05}
+.am-desc{font-size:16px;line-height:1.8;color:var(--char);margin-bottom:22px}
+.am-row{padding:14px 0;border-top:1px solid var(--line)}
+.am-row p{font-size:14.5px;line-height:1.75;color:var(--muted)}
+.am-lbl{display:block;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--char);margin-bottom:6px}
+.am-help{font-size:14.5px;line-height:1.75;color:var(--muted);padding-top:14px;border-top:1px solid var(--line)}
+.am-acts{display:flex;flex-wrap:wrap;gap:18px 24px;align-items:center;margin-top:30px}
+.am-acts .btn-g:hover{background:var(--char);color:var(--ivory)}
+@media(max-width:700px){
+  #areaModal{padding:0;align-items:flex-end}
+  .am-box{grid-template-columns:1fr;max-height:92vh}
+  .am-img{aspect-ratio:auto;height:34vh;min-height:0}
+  .am-body{padding:30px 26px 34px}
+}
+
+/* ══════════ Instagram · Life Beyond the Property ══════════ */
+#lifestyle{border-top:1px solid var(--line)}
+.ig-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.ig-follow{display:inline-flex;align-items:center;gap:10px;margin-bottom:64px;padding:12px 20px;border:1px solid var(--line-strong);color:var(--char);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s}
+.ig-follow svg{width:16px;height:16px}
+.ig-follow:hover{background:var(--char);border-color:var(--char);color:var(--ivory)}
+.ig-g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ig-c{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--ivory)}
+.ig-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--sand)}
+.ig-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--ease)}
+.ig-c:hover .ig-media img{transform:scale(1.04)}
+.ig-media.empty{background-image:repeating-linear-gradient(0deg,rgba(240,242,244,.14) 0 1px,transparent 1px 9px),repeating-linear-gradient(0deg,rgba(41,43,41,.014) 0 2px,transparent 2px 37px)}
+.ig-media.empty{aspect-ratio:16/10}          /* sin portada: tarjeta más baja */
+.ig-glyph{display:none}
+.ig-media.empty .ig-glyph{display:flex;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--char);opacity:.35;transition:opacity .4s,color .4s}
+.ig-media.empty .ig-glyph svg{width:46px;height:46px}
+.ig-c:hover .ig-media.empty .ig-glyph{opacity:.8;color:var(--turq-dk)}
+.ig-n{position:absolute;top:16px;left:18px;font-family:var(--serif);font-size:15px;letter-spacing:2px;color:var(--char);opacity:.6}
+.ig-media:not(.empty) .ig-n{color:var(--ivory);opacity:.85}
+.ig-body{padding:22px 2px 0}
+.ig-ti{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(22px,2vw,26px);color:var(--char);margin-bottom:8px}
+.ig-tx{font-size:14.5px;line-height:1.75;color:var(--muted);margin-bottom:16px}
+.ig-c:hover .prp-lk{color:var(--turq-dk)}
+@media(max-width:900px){.ig-g{grid-template-columns:1fr 1fr}.ig-c:last-child{grid-column:1/-1}.ig-c:last-child .ig-media{aspect-ratio:16/9}}
+@media(max-width:600px){.ig-g{grid-template-columns:1fr}.ig-media{aspect-ratio:16/10}.ig-c:last-child .ig-media{aspect-ratio:16/10}.ig-follow{margin-bottom:40px}}
+
 /* ── ANIMATIONS ── */
 @keyframes bodyIn{to{opacity:1}}
 @keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
@@ -602,6 +678,19 @@ footer{padding:64px 6% 48px;background:var(--char);display:flex;flex-direction:c
   </div>
 </section>
 
+<!-- AREAS — Fall in Love with the Riviera Maya -->
+<section id="areas" class="sec">
+  <div class="s-in">
+    <div class="s-hd rev">
+      <span class="s-ey" id="arEy"></span>
+      <h2 class="s-ti" id="arTi"></h2>
+      <div class="s-div"><div class="gdot"></div></div>
+    </div>
+    <p class="s-intro rev" id="arTx"></p>
+    <div class="area-g" id="areaG"></div>
+  </div>
+</section>
+
 <!-- PROPERTIES -->
 <section id="properties" class="sec travertine">
   <div class="s-in">
@@ -614,6 +703,22 @@ footer{padding:64px 6% 48px;background:var(--char);display:flex;flex-direction:c
     <div class="prp-country" id="prpCountry"></div>
     <div class="prp-g" id="prpG"></div>
     <div id="prpMore"></div>
+  </div>
+</section>
+
+<!-- INSTAGRAM — Life Beyond the Property -->
+<section id="lifestyle" class="sec">
+  <div class="s-in">
+    <div class="ig-hd">
+      <div class="s-hd rev">
+        <span class="s-ey" id="igEy"></span>
+        <h2 class="s-ti" id="igTi"></h2>
+        <div class="s-div"><div class="gdot"></div></div>
+      </div>
+      <a class="ig-follow rev" id="igFollow" href="https://www.instagram.com/oceanside_properties_int" target="_blank" rel="noopener"></a>
+    </div>
+    <p class="s-intro rev" id="igTx"></p>
+    <div class="ig-g" id="igG"></div>
   </div>
 </section>
 
@@ -1016,6 +1121,7 @@ function getFiltered(){
 // ── Render filtrado — landing muestra solo 3 ──
 function renderFiltered(){
   const t = L[lang];
+  fillAreaImages();   // fotos de respaldo de las áreas, ya con el catálogo cargado
   const filtered  = getFiltered();
   const grouped   = groupByName(filtered);
   const visible   = grouped.slice(0, 3);
@@ -1115,7 +1221,7 @@ const L = {
     c2:"TALK TO ERIKA",
     mfTi:"More than a real estate agency.<br>A partner in your next chapter.",
     mfTx:"<p>At OceanSide Properties, we believe finding a home is about more than buying a property — it’s about creating a life that feels right for you. Whether you’re taking your first step toward homeownership, finding a place to grow together, investing in new opportunities, or settling into a slower, more meaningful chapter by the sea, we’re here to guide you every step of the way.</p><p>From discovering the right property and exploring your options to navigating the buying process and beyond, we bring together trusted expertise, personalized guidance, and quality service to make the journey feel clear, accessible, and rewarding.</p><p class=\"mf-sign\">Your goals. Your journey. A place to call your own.</p>",
-    pEy:"I · PROPERTIES",
+    pEy:"II · PROPERTIES",
     pTi:"FIND A PROPERTY THAT FITS YOUR LIFE",
     pTx:"Browse current opportunities across the Riviera Maya. If something catches your eye, ask Erika — she’ll walk you through the details.",
     prpOf:"OF",
@@ -1124,15 +1230,15 @@ const L = {
     prpMore:"MORE",
     prpLoading:"LOADING...",
     prpAsk:"ASK ERIKA",
-    sEy:"II · SERVICES",
+    sEy:"IV · SERVICES",
     sTi:"HOW I CAN HELP",
     srv:[{"k": "first_home", "ti": "Buying Your First Home", "de": "Understand your options, explore suitable properties, and navigate the buying process with personalized guidance."}, {"k": "investment", "ti": "Exploring Real Estate Investments", "de": "Discover opportunities, compare relevant property details, and understand the factors to evaluate before making an investment decision."}, {"k": "next_chapter", "ti": "Finding Your Next Chapter", "de": "Explore properties that fit your preferred lifestyle, location, and plans for living in the Riviera Maya."}],
     srvCta:"EXPLORE YOUR OPTIONS",
-    iEy:"III · INVEST",
+    iEy:"V · INVEST",
     iTi:"MAKE INFORMED PROPERTY DECISIONS",
     iTx:"Every purchase involves more than the listing price. We’ll look at the details together so you can move forward with clarity.",
     st:[{"n": "01", "t": "Understand the Market", "d": "Explore relevant locations and property opportunities."}, {"n": "02", "t": "Compare Your Options", "d": "Evaluate properties in relation to your goals and budget."}, {"n": "03", "t": "Understand the Costs", "d": "Identify the costs and details you should investigate before purchasing."}, {"n": "04", "t": "Move with Confidence", "d": "Make informed decisions with clear, personalized guidance."}],
-    abEy:"IV · ABOUT",
+    abEy:"VI · ABOUT",
     abTi:"MEET ERIKA SALAZAR",
     abSub:"Your Real Estate Advisor in the Riviera Maya",
     abIntro:["Buying a property is a personal decision, and you deserve to understand every step. My approach is built around listening to your goals, helping you explore your options, and making the process easier to navigate — whether you’re buying your first home, considering an investment, or planning a new chapter by the Caribbean.", "I believe real estate guidance should feel personal, transparent, and accessible. My goal is to help you ask the right questions, understand your options, and move forward with greater clarity."],
@@ -1141,16 +1247,16 @@ const L = {
     abMisTi:"My Mission",
     abMission:"My mission is to make real estate more accessible, transparent, and personal — guiding each client toward opportunities that align with their needs, so they can make informed decisions and feel supported throughout the process.",
     abPhotoLbl:"VIEW PROFILE",
-    gEy:"V · GUIDES",
+    gEy:"VII · GUIDES",
     gTi:"REAL ESTATE, MADE CLEAR",
     gTx:"A few essentials worth understanding before you start your search.",
     edu:[{"ti": "Buying Your First Property in Mexico", "tx": "Foreign buyers can own property in Mexico. In the coastal restricted zone — which includes the Riviera Maya — this is usually done through a bank trust (fideicomiso), and every purchase is formalized before a notary public."}, {"ti": "Understanding the Costs of Buying", "tx": "Beyond the price, plan for closing costs such as acquisition tax, notary fees, appraisal, and registration — plus trust fees if you buy through a fideicomiso. Amounts vary, so ask for an itemized estimate early."}, {"ti": "Choosing the Right Area in the Riviera Maya", "tx": "Playa del Carmen, Tulum, Puerto Morelos, and Cancún each offer a different pace, price range, and lifestyle. Start with how you plan to use the property — living, vacationing, or renting — and narrow down from there."}],
     eduAsk:"ASK ERIKA ABOUT THIS",
-    tEy:"VI · WORKING TOGETHER",
+    tEy:"VIII · WORKING TOGETHER",
     tTi:"WHAT TO EXPECT WHEN WORKING WITH ERIKA",
     exp:[{"ti": "Personalized attention", "tx": "Your goals, budget, and timeline shape every recommendation."}, {"ti": "Clear communication", "tx": "Straight answers in plain language — no question is too basic."}, {"ti": "Guidance tailored to your goals", "tx": "Whether it’s a first home, an investment, or a new chapter, the guidance fits where you are."}],
     tst:[{"tx": "Our experience with OceanSide Properties was exceptional. Their team guided us at every step, offering personalized service to find our dream home.", "au": "Aline & Martin Rieu"}, {"tx": "The rental of our vacation villa went smoothly thanks to the team's professionalism. We are delighted with their exceptional service.", "au": "Sophie Duchamps"}, {"tx": "As an investor, I was impressed by the team's in-depth market knowledge, which allowed me to make a highly lucrative investment.", "au": "Paul Simon"}],
-    cEy:"VII · CONTACT",
+    cEy:"IX · CONTACT",
     cTi:"LET’S TALK ABOUT YOUR NEXT CHAPTER",
     cIntro:"Tell me what you’re looking for, what matters to you, and where you are in the process. We’ll explore your options together, with no pressure to have everything figured out from the start.",
     cPh:"Phone",
@@ -1173,7 +1279,22 @@ const L = {
     ftL:"Legal Notice",
     ftP:"Privacy Policy",
     ftC:"Cookies",
-    ftCp:"© {y} OceanSide Properties · Playa del Carmen, Quintana Roo, México"
+    ftCp:"© {y} OceanSide Properties · Playa del Carmen, Quintana Roo, México",
+    arEy:"I · THE AREA",
+    arTi:"FALL IN LOVE WITH THE RIVIERA MAYA",
+    arTx:"Each area has its own rhythm. Discover the one that fits the way you want to live.",
+    arCta:"EXPLORE THE AREA",
+    arRegion:"RIVIERA MAYA · QUINTANA ROO",
+    arProps:"VIEW PROPERTIES IN {a}",
+    arAsk:"ASK ERIKA ABOUT {a}",
+    arHelp:"Want to know what living or buying here is really like? Ask Erika — she’ll share practical guidance for your situation.",
+    igEy:"III · LIFESTYLE",
+    igTi:"LIFE BEYOND THE PROPERTY",
+    igTx:"Discover the places, spaces and little moments that make the Riviera Maya feel like home.",
+    igFollow:"FOLLOW ON INSTAGRAM",
+    igView:"VIEW ON INSTAGRAM",
+    igPost:"VIEW POST",
+    igCats:{"explore": {"ti": "Explore", "tx": "Local areas, beaches and everyday life in the Riviera Maya."}, "stories": {"ti": "Property Stories", "tx": "Property tours and the features that make each home special."}, "insights": {"ti": "Local Insights", "tx": "Practical guidance on buying and living in the area."}}
   },
   es:{
     nav:["INICIO", "PROPIEDADES", "SERVICIOS", "INVERTIR", "CONOZCA A ERIKA", "CONTACTO"],
@@ -1185,7 +1306,7 @@ const L = {
     c2:"HABLAR CON ERIKA",
     mfTi:"Más que una agencia inmobiliaria.<br>Un aliado en su próximo capítulo.",
     mfTx:"<p>En OceanSide Properties creemos que encontrar un hogar es mucho más que comprar una propiedad: se trata de crear una vida que se sienta a su medida. Ya sea que esté dando su primer paso hacia una casa propia, buscando un lugar para crecer juntos, invirtiendo en nuevas oportunidades o comenzando un capítulo más pausado y significativo junto al mar, estamos aquí para acompañarle en cada paso del camino.</p><p>Desde descubrir la propiedad ideal y explorar sus opciones hasta guiarle en el proceso de compra y más allá, reunimos experiencia confiable, asesoría personalizada y un servicio de calidad para que el camino sea claro, accesible y gratificante.</p><p class=\"mf-sign\">Sus metas. Su camino. Un lugar que pueda llamar suyo.</p>",
-    pEy:"I · PROPIEDADES",
+    pEy:"II · PROPIEDADES",
     pTi:"ENCUENTRE UNA PROPIEDAD A SU MEDIDA",
     pTx:"Explore las oportunidades disponibles en la Riviera Maya. Si alguna le interesa, pregúntele a Erika: ella le explicará los detalles.",
     prpOf:"DE",
@@ -1194,15 +1315,15 @@ const L = {
     prpMore:"MÁS",
     prpLoading:"CARGANDO...",
     prpAsk:"PREGUNTAR A ERIKA",
-    sEy:"II · SERVICIOS",
+    sEy:"IV · SERVICIOS",
     sTi:"CÓMO PUEDO AYUDARLE",
     srv:[{"k": "first_home", "ti": "Comprar su primera vivienda", "de": "Conozca sus opciones, explore propiedades adecuadas y avance en el proceso de compra con asesoría personalizada."}, {"k": "investment", "ti": "Explorar inversiones inmobiliarias", "de": "Descubra oportunidades, compare los detalles relevantes de cada propiedad y conozca los factores a evaluar antes de tomar una decisión de inversión."}, {"k": "next_chapter", "ti": "Encontrar su próximo capítulo", "de": "Explore propiedades que se ajusten a su estilo de vida, a la ubicación que prefiere y a sus planes para vivir en la Riviera Maya."}],
     srvCta:"EXPLORAR SUS OPCIONES",
-    iEy:"III · INVERTIR",
+    iEy:"V · INVERTIR",
     iTi:"DECISIONES INMOBILIARIAS INFORMADAS",
     iTx:"Toda compra implica más que el precio publicado. Revisaremos juntos los detalles para que avance con claridad.",
     st:[{"n": "01", "t": "Conozca el mercado", "d": "Explore zonas y oportunidades inmobiliarias relevantes."}, {"n": "02", "t": "Compare sus opciones", "d": "Evalúe cada propiedad según sus metas y su presupuesto."}, {"n": "03", "t": "Entienda los costos", "d": "Identifique los costos y detalles que conviene revisar antes de comprar."}, {"n": "04", "t": "Avance con confianza", "d": "Tome decisiones informadas con una guía clara y personalizada."}],
-    abEy:"IV · ACERCA DE",
+    abEy:"VI · ACERCA DE",
     abTi:"CONOZCA A ERIKA SALAZAR",
     abSub:"Su asesora inmobiliaria en la Riviera Maya",
     abIntro:["Comprar una propiedad es una decisión personal, y usted merece entender cada paso. Mi forma de trabajar se basa en escuchar sus metas, ayudarle a explorar sus opciones y hacer que el proceso sea más fácil de recorrer — ya sea que esté comprando su primera vivienda, considerando una inversión o planeando un nuevo capítulo junto al Caribe.", "Creo que la asesoría inmobiliaria debe sentirse personal, transparente y accesible. Mi objetivo es ayudarle a hacer las preguntas correctas, entender sus opciones y avanzar con mayor claridad."],
@@ -1211,16 +1332,16 @@ const L = {
     abMisTi:"Mi misión",
     abMission:"Mi misión es hacer que el sector inmobiliario sea más accesible, transparente y personal: guiar a cada cliente hacia oportunidades alineadas con sus necesidades, para que tome decisiones informadas y se sienta acompañado durante todo el proceso.",
     abPhotoLbl:"VER PERFIL",
-    gEy:"V · GUÍAS",
+    gEy:"VII · GUÍAS",
     gTi:"BIENES RAÍCES, CON CLARIDAD",
     gTx:"Algunos puntos esenciales que conviene entender antes de empezar su búsqueda.",
     edu:[{"ti": "Comprar su primera propiedad en México", "tx": "Los compradores extranjeros pueden ser propietarios en México. En la zona restringida de la costa —que incluye la Riviera Maya— esto suele hacerse mediante un fideicomiso bancario, y toda compraventa se formaliza ante notario público."}, {"ti": "Entender los costos de compra", "tx": "Además del precio, considere los gastos de cierre, como el impuesto de adquisición, los honorarios notariales, el avalúo y el registro, más las cuotas del fideicomiso si compra por esa vía. Los montos varían, así que pida un desglose desde el inicio."}, {"ti": "Elegir la zona adecuada en la Riviera Maya", "tx": "Playa del Carmen, Tulum, Puerto Morelos y Cancún ofrecen ritmos, rangos de precio y estilos de vida distintos. Empiece por cómo planea usar la propiedad —vivir, vacacionar o rentar— y a partir de ahí acote la búsqueda."}],
     eduAsk:"PREGUNTAR A ERIKA",
-    tEy:"VI · TRABAJAR JUNTOS",
+    tEy:"VIII · TRABAJAR JUNTOS",
     tTi:"QUÉ ESPERAR AL TRABAJAR CON ERIKA",
     exp:[{"ti": "Atención personalizada", "tx": "Sus metas, su presupuesto y sus tiempos guían cada recomendación."}, {"ti": "Comunicación clara", "tx": "Respuestas directas y en lenguaje sencillo; ninguna pregunta es demasiado básica."}, {"ti": "Asesoría según sus metas", "tx": "Ya sea una primera vivienda, una inversión o un nuevo capítulo, la asesoría se adapta a su momento."}],
     tst:[{"tx": "Nuestra experiencia con OceanSide Properties fue excepcional. Su equipo nos guió en cada paso, ofreciendo un servicio personalizado para encontrar nuestra casa soñada.", "au": "Aline & Martin Rieu"}, {"tx": "La renta de nuestra villa vacacional se realizó sin contratiempos gracias al profesionalismo del equipo. Estamos encantados con su servicio.", "au": "Sophie Duchamps"}, {"tx": "Como inversionista, quedé impresionado por el profundo conocimiento del mercado que me permitió realizar una inversión altamente rentable.", "au": "Paul Simon"}],
-    cEy:"VII · CONTACTO",
+    cEy:"IX · CONTACTO",
     cTi:"HABLEMOS DE SU PRÓXIMO CAPÍTULO",
     cIntro:"Cuénteme qué busca, qué es importante para usted y en qué punto del proceso se encuentra. Exploraremos juntos sus opciones, sin presión por tenerlo todo resuelto desde el principio.",
     cPh:"Teléfono",
@@ -1243,7 +1364,22 @@ const L = {
     ftL:"Aviso Legal",
     ftP:"Privacidad",
     ftC:"Cookies",
-    ftCp:"© {y} OceanSide Properties · Playa del Carmen, Quintana Roo, México"
+    ftCp:"© {y} OceanSide Properties · Playa del Carmen, Quintana Roo, México",
+    arEy:"I · LA ZONA",
+    arTi:"ENAMÓRESE DE LA RIVIERA MAYA",
+    arTx:"Cada zona tiene su propio ritmo. Descubra la que mejor se adapta a la forma en que quiere vivir.",
+    arCta:"EXPLORAR LA ZONA",
+    arRegion:"RIVIERA MAYA · QUINTANA ROO",
+    arProps:"VER PROPIEDADES EN {a}",
+    arAsk:"PREGUNTAR A ERIKA SOBRE {a}",
+    arHelp:"¿Quiere saber cómo es realmente vivir o comprar aquí? Pregúntele a Erika: le compartirá orientación práctica para su caso.",
+    igEy:"III · ESTILO DE VIDA",
+    igTi:"LA VIDA MÁS ALLÁ DE LA PROPIEDAD",
+    igTx:"Descubra los lugares, los espacios y los pequeños momentos que hacen que la Riviera Maya se sienta como en casa.",
+    igFollow:"SEGUIR EN INSTAGRAM",
+    igView:"VER EN INSTAGRAM",
+    igPost:"VER PUBLICACIÓN",
+    igCats:{"explore": {"ti": "Explorar", "tx": "Zonas, playas y la vida diaria en la Riviera Maya."}, "stories": {"ti": "Historias de propiedades", "tx": "Recorridos por propiedades y los detalles que hacen especial a cada hogar."}, "insights": {"ti": "Consejos locales", "tx": "Orientación práctica para comprar y vivir en la zona."}}
   }
 };
 
@@ -1265,6 +1401,153 @@ function updateWaFloat(){
 }
 document.addEventListener('DOMContentLoaded', updateWaFloat);
 
+// ══════════ ÁREAS · "Fall in Love with the Riviera Maya" ══════════
+// Editar aquí. show:false oculta un área (confirmar con Erika su zona de servicio).
+// img: foto aprobada del área (Cloudinary). Si está vacía se usa la foto de una
+//      propiedad del catálogo en esa ciudad; si no hay, se muestra una tarjeta tipográfica.
+// details: lifestyle · location · propertyTypes · buyers — solo se muestran si tienen texto.
+const AREAS = [
+  { key:'playa-del-carmen', name:'Playa del Carmen', city:'playa del carmen', show:true, img:'',
+    desc:{ en:'A walkable beach town with a lively center, the cafés and shops of Fifth Avenue, and the sea always a few blocks away.',
+           es:'Un pueblo de playa para recorrer a pie, con un centro lleno de vida, los cafés y tiendas de la Quinta Avenida y el mar siempre a unas cuadras.' },
+    details:{ en:{}, es:{} } },
+  { key:'tulum', name:'Tulum', city:'tulum', show:true, img:'',
+    desc:{ en:'Jungle, cenotes and a laid-back coastline, with a slower pace and a close connection to nature.',
+           es:'Selva, cenotes y una costa relajada, con un ritmo más pausado y una conexión cercana con la naturaleza.' },
+    details:{ en:{}, es:{} } },
+  { key:'puerto-aventuras', name:'Puerto Aventuras', city:'puerto aventuras', show:true, img:'',
+    desc:{ en:'A community built around a marina, with a calmer, residential feel and life close to the water.',
+           es:'Una comunidad en torno a una marina, con un ambiente más tranquilo y residencial, y la vida junto al agua.' },
+    details:{ en:{}, es:{} } },
+  { key:'akumal', name:'Akumal', city:'akumal', show:true, img:'',
+    desc:{ en:'A quiet bay known for its sea turtles and snorkeling — a good fit for a simple life by the sea.',
+           es:'Una bahía tranquila conocida por sus tortugas marinas y el snorkel, ideal para una vida sencilla junto al mar.' },
+    details:{ en:{}, es:{} } }
+];
+const AREA_DETAIL_LBL = {
+  en:{ lifestyle:'Lifestyle', location:'Location', propertyTypes:'Property types', buyers:'Good to know for buyers' },
+  es:{ lifestyle:'Estilo de vida', location:'Ubicación', propertyTypes:'Tipos de propiedad', buyers:'Para compradores' }
+};
+
+function areaFallbackImg(a){
+  if(a.img) return imgUrl(a.img, 900, 1100);
+  const row = allFetched.find(r => (r['Ciudad']||'').trim().toLowerCase() === a.city);
+  if(!row) return '';
+  const u = IMG_COLS.map(c=>row[c]).find(x=>x && x.trim());
+  return u ? imgUrl(u, 900, 1100) : '';
+}
+function renderAreas(){
+  const t = L[lang];
+  g('arEy').textContent = t.arEy;
+  g('arTi').textContent = t.arTi;
+  g('arTx').textContent = t.arTx;
+  g('areaG').innerHTML = AREAS.filter(a=>a.show).map(a=>`
+    <article class="area-c no-img rev" data-area="${a.key}">
+      <div class="area-ov"></div>
+      <div class="area-body">
+        <h3 class="area-nm">${a.name}</h3>
+        <p class="area-tx">${a.desc[lang]}</p>
+        <button type="button" class="area-lk" onclick="openArea('${a.key}')">${t.arCta}</button>
+      </div>
+    </article>`).join('');
+  fillAreaImages();
+}
+// Agrega la foto a las tarjetas que aún no la tienen (también al terminar de cargar el catálogo)
+function fillAreaImages(){
+  // si la ficha se abrió (p. ej. desde #area-…) antes de cargar el catálogo, refrescarla con foto
+  if(_areaOpenKey && g('areaModal').querySelector('.am-box.no-img') && allFetched.length){ const k=_areaOpenKey; const f=_areaLastFocus; openArea(k, true); _areaLastFocus=f; }
+  AREAS.filter(a=>a.show).forEach(a=>{
+    const card = document.querySelector(`.area-c[data-area="${a.key}"]`);
+    if(!card || card.querySelector('.area-img')) return;
+    const src = areaFallbackImg(a);
+    if(!src) return;
+    const im = document.createElement('img');
+    im.className = 'area-img'; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+    im.onload  = ()=>card.classList.remove('no-img');
+    im.onerror = ()=>im.remove();                       // si la imagen falla, queda la tarjeta tipográfica
+    im.src = src;
+    card.prepend(im);
+  });
+}
+
+let _areaLastFocus = null, _areaOpenKey = null;
+function openArea(key, fromHash){
+  const a = AREAS.find(x=>x.key===key && x.show); if(!a) return;
+  _areaOpenKey = key;
+  const t = L[lang];
+  const img = areaFallbackImg(a);
+  const box = g('areaModal').querySelector('.am-box');
+  g('amImg').innerHTML = img ? `<img src="${img}" alt="${a.name}" onerror="this.closest('.am-box').classList.add('no-img');this.remove()">` : '';
+  box.classList.toggle('no-img', !img);            // sin foto: ficha de una sola columna
+  g('amEy').textContent = t.arRegion;
+  g('amName').textContent = a.name;
+  g('amDesc').textContent = a.desc[lang];
+  const det = (a.details && a.details[lang]) || {};
+  const lbl = AREA_DETAIL_LBL[lang];
+  const rows = Object.keys(lbl).filter(k=>det[k] && String(det[k]).trim());
+  g('amDetails').innerHTML = rows.length
+    ? rows.map(k=>`<div class="am-row"><span class="am-lbl">${lbl[k]}</span><p>${det[k]}</p></div>`).join('')
+    : `<p class="am-help">${t.arHelp}</p>`;
+  const props = 'collection.html?city=' + encodeURIComponent(a.city) + (lang==='es' ? '&lang=es' : '');
+  const msg = lang==='es' ? `Hola Erika, me gustaría saber más sobre ${a.name}.` : `Hi Erika, I’d like to know more about ${a.name}.`;
+  g('amActs').innerHTML = `
+    <a class="btn-g" href="${props}">${t.arProps.replace('{a}', a.name)}</a>
+    <a class="am-ask prp-lk" href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${t.arAsk.replace('{a}', a.name)}</a>`;
+  _areaLastFocus = document.activeElement;
+  g('areaModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if(!fromHash) history.replaceState(null, '', '#area-' + key);
+  setTimeout(()=>{ const c = g('areaModal').querySelector('.tmm-close'); if(c) c.focus(); }, 50);
+  if(typeof gtag === 'function') gtag('event','area_open',{event_category:'Areas',area:key,language:lang});
+}
+function closeArea(){
+  _areaOpenKey = null;
+  g('areaModal').classList.remove('open');
+  document.body.style.overflow = '';
+  if(location.hash.startsWith('#area-')) history.replaceState(null, '', location.pathname + location.search + '#areas');
+  if(_areaLastFocus) _areaLastFocus.focus();
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && g('areaModal') && g('areaModal').classList.contains('open')) closeArea(); });
+// Enlace directo: index.html#area-tulum
+window.addEventListener('load', ()=>{ if(location.hash.startsWith('#area-')) openArea(location.hash.slice(6), true); });
+
+// ══════════ INSTAGRAM · "Life Beyond the Property" ══════════
+// Contenido curado (sin integración externa). Cuando Erika apruebe publicaciones,
+// pon en cada tarjeta la URL pública del post/reel (url) y su portada en Cloudinary (img).
+// Sin url, la tarjeta enlaza al perfil. Sin img, se muestra la versión tipográfica.
+const IG_PROFILE = 'https://www.instagram.com/oceanside_properties_int';
+const IG_HANDLE  = '@oceanside_properties_int';
+const IG_CARDS = [
+  { cat:'explore',  url:'', img:'' },
+  { cat:'stories',  url:'', img:'' },
+  { cat:'insights', url:'', img:'' }
+];
+const IG_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>`;
+function renderInstagram(){
+  const t = L[lang];
+  g('igEy').textContent = t.igEy;
+  g('igTi').textContent = t.igTi;
+  g('igTx').textContent = t.igTx;
+  g('igFollow').innerHTML = `${IG_ICON}<span>${t.igFollow}</span>`;
+  g('igFollow').href = IG_PROFILE;
+  g('igG').innerHTML = IG_CARDS.map((c,i)=>{
+    const cat  = t.igCats[c.cat];
+    const href = c.url || IG_PROFILE;
+    const media = c.img
+      ? `<img src="${imgUrl(c.img, 800, 1000)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
+      : '';
+    return `
+    <a class="ig-c rev" href="${href}" target="_blank" rel="noopener" aria-label="${cat.ti} — Instagram">
+      <div class="ig-media${c.img?'':' empty'}">${media}<span class="ig-glyph">${IG_ICON}</span><span class="ig-n">0${i+1}</span></div>
+      <div class="ig-body">
+        <h3 class="ig-ti">${cat.ti}</h3>
+        <p class="ig-tx">${cat.tx}</p>
+        <span class="prp-lk">${c.url ? t.igPost : t.igView}</span>
+      </div>
+    </a>`;
+  }).join('');
+}
+
 const SHOW_TESTIMONIALS = false;   // true = mostrar testimonios (solo si son reales y autorizados)
 
 function render(){
@@ -1278,6 +1561,9 @@ function render(){
   g('hSlogan').textContent = t.hSlogan;
   g('hCta1').textContent = t.c1;
   g('hCta2').textContent = t.c2;
+  // Áreas e Instagram
+  renderAreas();
+  renderInstagram();
   // Manifesto (sección oculta — se conserva el contenido)
   g('mfTi').innerHTML = t.mfTi;
   g('mfTx').innerHTML = t.mfTx;
@@ -1901,6 +2187,22 @@ window.addEventListener('load', function(){
     <h3 id="foTitle"></h3>
     <p id="foSub"></p>
     <button type="button" id="foBtn"></button>
+  </div>
+</div>
+
+<!-- AREA DETAIL -->
+<div id="areaModal" role="dialog" aria-modal="true" aria-labelledby="amName" onclick="if(event.target===this)closeArea()">
+  <div class="am-box">
+    <button type="button" class="tmm-close" onclick="closeArea()" aria-label="Close">✕</button>
+    <div class="am-img" id="amImg"></div>
+    <div class="am-body">
+      <p class="am-ey" id="amEy"></p>
+      <h3 class="am-name" id="amName"></h3>
+      <div class="tmm-line"></div>
+      <p class="am-desc" id="amDesc"></p>
+      <div id="amDetails"></div>
+      <div class="am-acts" id="amActs"></div>
+    </div>
   </div>
 </div>
 
