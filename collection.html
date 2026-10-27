@@ -60,6 +60,7 @@ img{max-width:100%;display:block}
 .fsel{background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:'Jost',system-ui,sans-serif;font-size:10px;font-weight:300;letter-spacing:1px;padding:7px 26px 7px 10px;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;transition:border-color .3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235F615C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;white-space:nowrap;flex-shrink:0}
 .fsel:focus{border-color:var(--gold)}
 .fsel option{background:var(--bg2);color:var(--text)}
+.fsel option.loc-country{font-weight:600}
 .price-range{display:flex;align-items:center;gap:5px;flex-shrink:0}
 .price-range span{font-size:9px;letter-spacing:2px;color:var(--dim);white-space:nowrap}
 .price-inp{width:88px;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:'Jost',system-ui,sans-serif;font-size:10px;padding:7px 8px;outline:none;transition:border-color .3s}
@@ -453,7 +454,7 @@ let currentGalleryIdx = {};
 const L = {
   en:{
     back:'BACK',title:'The Collection',
-    searchPh:'Search properties...',allCities:'All cities',allTypes:'All types',allOffers:'Sale & Rent',
+    searchPh:'Search properties...',allCities:'All locations',allTypes:'All types',allOffers:'Sale & Rent',
     sort:'Sort',sortPA:'Price ↑',sortPD:'Price ↓',sortAD:'Largest',sortRD:'Most rooms',
     mapBtn:'MAP',clear:'CLEAR',rooms:'Bedrooms',
     results:n=>`<span>${n}</span> propert${n!==1?'ies':'y'}`,
@@ -469,7 +470,7 @@ const L = {
   },
   es:{
     back:'VOLVER',title:'La Colección',
-    searchPh:'Buscar propiedades...',allCities:'Todas las ciudades',allTypes:'Todos los tipos',allOffers:'Venta & Renta',
+    searchPh:'Buscar propiedades...',allCities:'Todas las ubicaciones',allTypes:'Todos los tipos',allOffers:'Venta & Renta',
     sort:'Ordenar',sortPA:'Precio ↑',sortPD:'Precio ↓',sortAD:'Más grande',sortRD:'Más recámaras',
     mapBtn:'MAPA',clear:'LIMPIAR',rooms:'Recámaras',
     results:n=>`<span>${n}</span> propiedad${n!==1?'es':''}`,
@@ -589,7 +590,7 @@ function buildFilterSelects(){
     return (tipoMap[lang]||tipoMap.en)[key]||raw;
   }
 
-  buildSel('fCity', t.allCities, uniq('Ciudad'), null);
+  buildLocationSel(t.allCities);
   buildSel('fTipo', t.allTypes, uniq('Tipo propiedad'), translateTipo);
   buildSel('fOferta', t.allOffers, uniq('listing_type'), parseListingType);
 }
@@ -619,6 +620,69 @@ function groupByName(rows){
   });
 }
 
+
+// ── UBICACIÓN: País › Estado › Ciudad (un solo dropdown) ──
+// Columnas leídas del Sheet: Pais/País/Country, Estado/State, Ciudad.
+// Filas sin país se consideran México. Los 3 países se muestran siempre, aunque aún no tengan propiedades.
+const COUNTRIES = {
+  MX:{es:'México',en:'Mexico',alias:['mx','mex','mexico','méxico']},
+  US:{es:'Estados Unidos',en:'United States',alias:['us','usa','united states','estados unidos','eeuu','ee.uu.']},
+  DO:{es:'República Dominicana',en:'Dominican Republic',alias:['do','rd','dominican republic','república dominicana','republica dominicana']}
+};
+function propCountry(p){
+  const v = String(p['Pais']||p['País']||p['pais']||p['Country']||p['country']||'').trim().toLowerCase();
+  if(!v) return 'MX';
+  for(const k in COUNTRIES){ if(COUNTRIES[k].alias.includes(v)) return k; }
+  return v.toUpperCase();
+}
+const propState = p => String(p['Estado']||p['estado']||p['State']||p['state']||'').trim();
+const propCity  = p => String(p['Ciudad']||'').trim();
+const locKey    = (...parts) => parts.map(x=>encodeURIComponent(String(x).toLowerCase())).join('|');
+
+function buildLocationSel(defaultLabel){
+  const el = g('fCity');
+  // árbol país → estado → ciudades, a partir de los datos
+  const tree = {};
+  Object.keys(COUNTRIES).forEach(c=>tree[c]={});
+  allProps.forEach(p=>{
+    const c=propCountry(p), st=propState(p), ct=propCity(p);
+    tree[c] = tree[c] || {};
+    tree[c][st] = tree[c][st] || new Set();
+    if(ct) tree[c][st].add(ct);
+  });
+  const IND1='\u00A0\u00A0\u00A0\u00A0', IND2=IND1+IND1;
+  const byName=(a,b)=>a.localeCompare(b,lang);
+  let html = `<option value="">${defaultLabel}</option>`;
+  Object.keys(tree).forEach(c=>{
+    const cName = COUNTRIES[c] ? COUNTRIES[c][lang] : c;
+    html += `<option value="${locKey('c',c)}" class="loc-country">${cName}</option>`;
+    Object.keys(tree[c]).sort(byName).forEach(st=>{
+      const cities=[...tree[c][st]].sort(byName);
+      if(st){
+        html += `<option value="${locKey('s',c,st)}">${IND1}${st}</option>`;
+        cities.forEach(ct=> html += `<option value="${locKey('ct',c,st,ct)}">${IND2}${ct}</option>`);
+      } else {
+        cities.forEach(ct=> html += `<option value="${locKey('ct',c,'',ct)}">${IND1}${ct}</option>`);
+      }
+    });
+  });
+  el.innerHTML = html;
+  el.value = filters.city;
+  if(el.value !== filters.city) el.value = '';   // valor del URL que ya no existe
+}
+
+function matchLocation(p, val){
+  if(!val) return true;
+  const parts = val.split('|').map(decodeURIComponent);
+  const c=propCountry(p).toLowerCase(), st=propState(p).toLowerCase(), ct=propCity(p).toLowerCase();
+  switch(parts[0]){
+    case 'c':  return c===parts[1];
+    case 's':  return c===parts[1] && st===parts[2];
+    case 'ct': return c===parts[1] && st===parts[2] && ct===parts[3];
+    default:   return ct===val.toLowerCase();    // enlaces antiguos: ?city=playa del carmen
+  }
+}
+
 function getFiltered(){
   let res = allProps.filter(p=>{
     const img = getMainImg(p);
@@ -632,7 +696,7 @@ function getFiltered(){
     const rooms = parseInt(p['Recámaras']||p['Recámaras'])||0;
     const s = filters.search.toLowerCase();
     if(s && !name.includes(s) && !city.includes(s) && !col.includes(s)) return false;
-    if(filters.city    && city !== filters.city) return false;
+    if(filters.city    && !matchLocation(p, filters.city)) return false;
     if(filters.tipo    && tipo !== filters.tipo) return false;
     if(filters.oferta  && of   !== filters.oferta) return false;
     if(filters.rooms   && rooms < parseInt(filters.rooms)) return false;
@@ -686,7 +750,7 @@ function updateURL(){
 function readURL(){
   const p = new URLSearchParams(window.location.search);
   filters.search  = p.get('search')||'';
-  filters.city    = p.get('city')||'';
+  filters.city    = p.get('city')||(p.get('country') ? locKey('c',p.get('country').toUpperCase()) : '');
   filters.tipo    = p.get('tipo')||'';
   filters.oferta  = p.get('oferta')||'';
   filters.rooms   = p.get('rooms')||'';
