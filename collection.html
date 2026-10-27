@@ -315,6 +315,9 @@ footer{background:var(--char);border-top:none}
 /* Logo en la barra */
 .nav-logo img{width:auto;height:34px;filter:none}
 @media(max-width:600px){.nav-logo-txt{display:none}}
+
+/* Precio de lista original bajo el precio convertido */
+.card-price-ref,.list-price-ref{font-size:10px;letter-spacing:1px;color:var(--muted);margin-top:3px}
 </style>
 </head>
 <body>
@@ -332,8 +335,8 @@ footer{background:var(--char);border-top:none}
   <div style="flex:1"></div>
   <div class="nav-controls">
     <div class="currency-sw">
-      <button class="cur-btn active" data-cur="MXN">MXN</button>
-      <button class="cur-btn" data-cur="USD">USD</button>
+      <button class="cur-btn active" data-cur="USD">USD</button>
+      <button class="cur-btn" data-cur="MXN">MXN</button>
       <button class="cur-btn" data-cur="CAD">CAD</button>
     </div>
     <div class="lang-sw">
@@ -442,8 +445,7 @@ const IMG_COLS = ['image[0].url','image[1].url','image[2].url','image[3].url','i
 
 // ── STATE ──
 let allProps = [], filtered = [], visibleCount = 9;
-let currentView = 'grid', currency = 'MXN', lang = 'en';
-let rates = {USD: 0.058, CAD: 0.079};
+let currentView = 'grid', lang = 'en';
 let mapInstance = null, mapMarkers = [];
 let mapVisible = window.innerWidth > 900;
 let filters = {search:'',city:'',tipo:'',oferta:'',rooms:'',minPrice:'',maxPrice:'',sort:'default'};
@@ -499,20 +501,65 @@ function imgUrl(url, w, h){
   return url;
 }
 
-function parsePrice(val){
-  if(!val) return 0;
-  return parseFloat(String(val).replace(/[^0-9.]/g,'')) || 0;
+// ── PRECIOS · USD por defecto (clientes en EE. UU.) ──────────────────────
+// Tipo de cambio del día (open.er-api.com), guardado 12 h en el navegador y
+// compartido por index, collection y property. Respaldo si la API falla:
+const FALLBACK_RATES = {USD:0.058, CAD:0.079};          // 1 MXN = x USD / x CAD
+const RATES_TTL = 12*60*60*1000;
+let rates = Object.assign({}, FALLBACK_RATES);
+let currency = (()=>{
+  const ok = ['USD','MXN','CAD'];
+  const u = new URLSearchParams(location.search).get('cur');
+  if(ok.includes(u)) return u;
+  try{ const s = localStorage.getItem('os_cur'); if(ok.includes(s)) return s; }catch(e){}
+  return 'USD';
+})();
+function setCurrency(c){ currency = c; try{ localStorage.setItem('os_cur', c); }catch(e){} }
+function loadCachedRates(){
+  try{
+    const c = JSON.parse(localStorage.getItem('os_rates')||'null');
+    if(c && c.USD){ rates.USD = c.USD; rates.CAD = c.CAD || rates.CAD; return Date.now()-c.ts < RATES_TTL; }
+  }catch(e){}
+  return false;
 }
-
-function formatCurrency(mxnPrice){
-  const n = parsePrice(mxnPrice);
+async function fetchRates(){
+  if(loadCachedRates()) return;
+  try{
+    const r = await fetch('https://open.er-api.com/v6/latest/MXN');
+    const d = await r.json();
+    if(d && d.rates && d.rates.USD){
+      rates.USD = d.rates.USD; rates.CAD = d.rates.CAD || rates.CAD;
+      try{ localStorage.setItem('os_rates', JSON.stringify({USD:rates.USD, CAD:rates.CAD, ts:Date.now()})); }catch(e){}
+    }
+  }catch(e){}
+}
+function parsePrice(val){ return parseFloat(String(val||'').replace(/[^0-9.]/g,''))||0; }
+// Moneda del precio en el Sheet: columna opcional "Moneda" (USD / MXN). Vacío = MXN.
+function srcCurrency(p){
+  const m = String((p && (p['Moneda']||p['moneda']||p['Currency']||p['currency'])) || '').trim().toUpperCase();
+  return m === 'USD' ? 'USD' : 'MXN';
+}
+function priceMXN(val, p){ const n = parsePrice(val); return srcCurrency(p)==='USD' ? n/rates.USD : n; }
+function priceIn(cur, val, p){ const m = priceMXN(val,p); return cur==='MXN' ? m : m*rates[cur]; }
+// Redondeo: < 100k → 500 · < 1M → 1,000 · ≥ 1M → 5,000
+function roundNice(x){ const step = x<100000 ? 500 : x<1000000 ? 1000 : 5000; return Math.round(x/step)*step; }
+const CUR_SYM = {USD:'US$', CAD:'CA$', MXN:'MXN $'};
+// Precio principal en la moneda elegida (≈ cuando es conversión)
+function formatCurrency(val, p){
+  const n = parsePrice(val);
   if(!n) return '';
-  let amount, sym;
-  if(currency==='USD'){ amount=n*rates.USD; sym='USD'; }
-  else if(currency==='CAD'){ amount=n*rates.CAD; sym='CAD'; }
-  else { amount=n; sym='MXN'; }
-  return sym+' $'+Math.round(amount).toLocaleString('en-US');
+  const src = srcCurrency(p);
+  if(currency === src) return CUR_SYM[src] + Math.round(n).toLocaleString('en-US');
+  return '≈ ' + CUR_SYM[currency] + roundNice(priceIn(currency, val, p)).toLocaleString('en-US');
 }
+// Precio de lista original, como referencia bajo el convertido ('' si no hay conversión)
+function priceRef(val, p){
+  const n = parsePrice(val);
+  const src = srcCurrency(p);
+  if(!n || currency === src) return '';
+  return CUR_SYM[src] + Math.round(n).toLocaleString('en-US');
+}
+loadCachedRates();
 
 function parseLocation(locStr){
   if(!locStr) return null;
@@ -538,21 +585,12 @@ function isLand(p){
 
 function pricePerM2(p){
   if(!isLand(p)) return '';
-  const price = parsePrice(p['Precio']);
+  const price = priceIn(currency, p['Precio'], p);
   const area  = parseFloat(p['Area'])||0;
   if(!price||!area) return '';
-  let rate = currency==='USD'?rates.USD:currency==='CAD'?rates.CAD:1;
-  return (currency==='MXN'?'MXN':currency)+' $'+Math.round(price*rate/area).toLocaleString('en-US')+'/m²';
+  return CUR_SYM[currency]+Math.round(price/area).toLocaleString('en-US')+'/m²';
 }
 
-// ── EXCHANGE RATES ──
-async function fetchRates(){
-  try{
-    const r = await fetch('https://open.er-api.com/v6/latest/MXN');
-    const d = await r.json();
-    if(d.rates){ rates.USD=d.rates.USD; rates.CAD=d.rates.CAD; }
-  }catch(e){}
-}
 
 // ── RENDER i18n ──
 function applyLang(){
@@ -692,7 +730,7 @@ function getFiltered(){
     const col   = (p['Colonia']||'').toLowerCase();
     const tipo  = (p['Tipo propiedad']||'').toLowerCase();
     const of    = (p['listing_type']||'').toLowerCase();
-    const price = parsePrice(p['Precio']);
+    const price = priceIn(currency, p['Precio'], p);   // mín./máx. en la moneda elegida
     const rooms = parseInt(p['Recámaras']||p['Recámaras'])||0;
     const s = filters.search.toLowerCase();
     if(s && !name.includes(s) && !city.includes(s) && !col.includes(s)) return false;
@@ -710,8 +748,8 @@ function getFiltered(){
 
   // Sort
   switch(filters.sort){
-    case 'price-asc':  grouped.sort((a,b)=>parsePrice(a['Precio'])-parsePrice(b['Precio'])); break;
-    case 'price-desc': grouped.sort((a,b)=>parsePrice(b['Precio'])-parsePrice(a['Precio'])); break;
+    case 'price-asc':  grouped.sort((a,b)=>priceMXN(a['Precio'],a)-priceMXN(b['Precio'],b)); break;
+    case 'price-desc': grouped.sort((a,b)=>priceMXN(b['Precio'],b)-priceMXN(a['Precio'],a)); break;
     case 'area-desc':  grouped.sort((a,b)=>(parseFloat(b['Area'])||0)-(parseFloat(a['Area'])||0)); break;
     case 'rooms-desc': grouped.sort((a,b)=>(parseInt(b['Recámaras'])||0)-(parseInt(a['Recámaras'])||0)); break;
     default: grouped.sort((a,b)=>parseTimestamp(b['timestamp']||b['Timestamp'])-parseTimestamp(a['timestamp']||a['Timestamp'])); break;
@@ -742,7 +780,7 @@ function updateURL(){
   const p = new URLSearchParams();
   Object.entries(filters).forEach(([k,v])=>{ if(v&&v!=='default') p.set(k,v); });
   if(lang!=='en') p.set('lang',lang);
-  if(currency!=='MXN') p.set('cur',currency);
+  if(currency!=='USD') p.set('cur',currency);
   const str = p.toString();
   history.replaceState(null,'',str?'?'+str:window.location.pathname);
 }
@@ -758,7 +796,6 @@ function readURL(){
   filters.maxPrice= p.get('maxPrice')||'';
   filters.sort    = p.get('sort')||'default';
   lang    = ['en','es'].includes(p.get('lang')) ? p.get('lang') : 'en';
-  currency= p.get('cur')||'MXN';
   if(g('fSearch'))  g('fSearch').value  = filters.search;
   if(g('fMin'))     g('fMin').value     = filters.minPrice;
   if(g('fMax'))     g('fMax').value     = filters.maxPrice;
@@ -876,7 +913,8 @@ function renderCard(p, i){
         ${baths?`<span class="card-stat">${baths} ${baLbl}</span>`:''}
         ${area?`<span class="card-stat">${area}</span>`:''}
       </div>
-      <p class="card-price">${formatCurrency(p['Precio'])}</p>
+      <p class="card-price">${formatCurrency(p['Precio'],p)}</p>
+      ${priceRef(p['Precio'],p)?`<p class="card-price-ref">${priceRef(p['Precio'],p)}</p>`:''}
       ${pm2?`<p class="card-price-m2">${pm2}</p>`:''}
     </div>
   </div>`;
@@ -910,7 +948,8 @@ function renderListItem(p, i){
       </div>
     </div>
     <div class="list-price-col">
-      <p class="list-price">${formatCurrency(p['Precio'])}</p>
+      <p class="list-price">${formatCurrency(p['Precio'],p)}</p>
+      ${priceRef(p['Precio'],p)?`<p class="list-price-ref">${priceRef(p['Precio'],p)}</p>`:''}
       ${pm2?`<p class="list-price-m2">${pm2}</p>`:''}
       ${tipo?`<span class="list-badge">${badgeLbl}</span>`:''}
     </div>
@@ -962,7 +1001,7 @@ function updateMapMarkers(props){
         <div class="map-popup-body">
           <p class="map-popup-name">${p['Nombre']||''}</p>
           <p class="map-popup-loc">${[p['Colonia'],p['Ciudad']].filter(Boolean).join(' · ')}</p>
-          <p class="map-popup-price">${formatCurrency(p['Precio'])}</p>
+          <p class="map-popup-price">${formatCurrency(p['Precio'],p)}</p>
         </div>`);
 
     const marker = new mapboxgl.Marker(el)
@@ -1002,7 +1041,7 @@ function openUnitPanel(units){
         <span class="unit-item-name">${unit}</span>
         ${meta?`<span class="unit-item-meta">${meta}</span>`:''}
       </div>
-      <span class="unit-item-price">${formatCurrency(u['Precio'])}</span>
+      <span class="unit-item-price">${formatCurrency(u['Precio'],u)}</span>
       <span class="unit-item-arr">→</span>
     </div>`;
   }).join('');
@@ -1068,7 +1107,7 @@ g('fSort').addEventListener('change',e=>handleSort(e.target.value));
 // ── CURRENCY ──
 document.querySelectorAll('.cur-btn').forEach(b=>{
   b.addEventListener('click',()=>{
-    currency = b.dataset.cur;
+    setCurrency(b.dataset.cur);
     document.querySelectorAll('.cur-btn').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
     renderResults();
