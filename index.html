@@ -1515,38 +1515,120 @@ window.addEventListener('load', ()=>{ if(location.hash.startsWith('#area-')) ope
 // Contenido curado (sin integración externa). Cuando Erika apruebe publicaciones,
 // pon en cada tarjeta la URL pública del post/reel (url) y su portada en Cloudinary (img).
 // Sin url, la tarjeta enlaza al perfil. Sin img, se muestra la versión tipográfica.
-const IG_PROFILE = 'https://www.instagram.com/oceanside_properties_int';
-const IG_HANDLE  = '@oceanside_properties_int';
-const IG_CARDS = [
-  { cat:'explore',  url:'https://www.instagram.com/p/DCEtXJVsnVI/?xtok=MXN6b2ZyeTI4aTB3dA==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793075850/IMG_20261026_233700_zcqodf.jpg' },
-  { cat:'stories',  url:'https://www.instagram.com/reel/DakyCtHRQ5Y/?dlrf=MXZjdmx4MHBka3F3NA==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793076187/file_00000000637081f9b47ccf5cb17806ab_jezqe6.png' },
-  { cat:'insights', url:'https://www.instagram.com/reel/C3QNK5ZuiXm/?mdxt=MThlcnEwMHVwbmxkYg==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793076492/file_00000000112481f9aa6c130b44551fc9_bwbmge.png' }
-];
-const IG_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>`;
-function renderInstagram(){
-  const t = L[lang];
-  g('igEy').textContent = t.igEy;
-  g('igTi').textContent = t.igTi;
-  g('igTx').textContent = t.igTx;
-  g('igFollow').innerHTML = `${IG_ICON}<span>${t.igFollow}</span>`;
-  g('igFollow').href = IG_PROFILE;
-  g('igG').innerHTML = IG_CARDS.map((c,i)=>{
-    const cat  = t.igCats[c.cat];
-    const href = c.url || IG_PROFILE;
-    const media = c.img
-      ? `<img src="${imgUrl(c.img, 1200, 900)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
-      : '';
-    return `
-    <a class="ig-c rev" href="${href}" target="_blank" rel="noopener" aria-label="${cat.ti} — Instagram">
-      <div class="ig-media${c.img?'':' empty'}">${media}<span class="ig-glyph">${IG_ICON}</span><span class="ig-n">0${i+1}</span></div>
-      <div class="ig-body">
-        <h3 class="ig-ti">${cat.ti}</h3>
-        <p class="ig-tx">${cat.tx}</p>
-        <span class="prp-lk">${c.url ? t.igPost : t.igView}</span>
-      </div>
-    </a>`;
-  }).join('');
+
+/* ══════════ INSTAGRAM CARDS · RESPONSIVE ══════════ */
+
+.ig-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #EAE2D6;
+  isolation: isolate;
 }
+
+.ig-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.ig-c:hover .ig-media img {
+  transform: scale(1.035);
+}
+
+.ig-media.empty {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(54, 184, 201, 0.12),
+      transparent 55%
+    ),
+    #EAE2D6;
+}
+
+.ig-glyph {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.ig-glyph svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.ig-n {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  z-index: 1;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+}
+
+.ig-body {
+  padding-top: 22px;
+}
+
+.ig-c {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ig-c .ig-ti {
+  margin: 0 0 12px;
+}
+
+.ig-c .ig-tx {
+  margin: 0 0 20px;
+}
+
+@media (max-width: 768px) {
+  .ig-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .ig-body {
+    padding-top: 18px;
+  }
+
+  .ig-glyph {
+    top: 10px;
+    right: 10px;
+  }
+
+  .ig-n {
+    top: 10px;
+    left: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ig-media img {
+    transition: none;
+  }
+
+  .ig-c:hover .ig-media img {
+    transform: none;
+  }
+}
+
 
 const SHOW_TESTIMONIALS = false;   // true = mostrar testimonios (solo si son reales y autorizados)
 
