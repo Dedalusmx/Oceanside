@@ -1522,19 +1522,19 @@ const IG_CARDS = [
   { cat:'stories',  url:'https://www.instagram.com/reel/DakyCtHRQ5Y/?dlrf=MXZjdmx4MHBka3F3NA==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793076187/file_00000000637081f9b47ccf5cb17806ab_jezqe6.png' },
   { cat:'insights', url:'https://www.instagram.com/reel/C3QNK5ZuiXm/?mdxt=MThlcnEwMHVwbmxkYg==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793077641/file_00000000394481f9970616df709f2746_xpqkra.png' }
 ];
-const IG_ICON = <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>;
+const IG_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>`;
 function renderInstagram(){
   const t = L[lang];
   g('igEy').textContent = t.igEy;
   g('igTi').textContent = t.igTi;
   g('igTx').textContent = t.igTx;
-  g('igFollow').innerHTML = ${IG_ICON}<span>${t.igFollow}</span>;
+  g('igFollow').innerHTML = `${IG_ICON}<span>${t.igFollow}</span>`;
   g('igFollow').href = IG_PROFILE;
   g('igG').innerHTML = IG_CARDS.map((c,i)=>{
     const cat  = t.igCats[c.cat];
     const href = c.url || IG_PROFILE;
     const media = c.img
-      ? <img src="${imgUrl(c.img, 1200, 900)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">
+      ? `<img src="${imgUrl(c.img, 1200, 900)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
       : '';
     return `
     <a class="ig-c rev" href="${href}" target="_blank" rel="noopener" aria-label="${cat.ti} — Instagram">
@@ -1547,7 +1547,6 @@ function renderInstagram(){
     </a>`;
   }).join('');
 }
-
 
 const SHOW_TESTIMONIALS = false;   // true = mostrar testimonios (solo si son reales y autorizados)
 
