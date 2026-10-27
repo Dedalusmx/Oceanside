@@ -501,6 +501,8 @@ function applyLang(){
   const t=L[lang];
   document.documentElement.lang=lang;
   g('navBackTxt').textContent=t.back;
+  // Atrás → siempre a la colección, conservando el idioma
+  g('navBack').href = 'collection.html' + (lang==='es' ? '?lang=es' : '');
   const st=g('shareTxt'); if(st) st.textContent=t.share;
   const bt=g('brochureTxt'); if(bt) bt.textContent=t.brochure;
   g('loadTxt').textContent=t.loading;
@@ -512,10 +514,6 @@ function applyLang(){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
   // Update dropdown label
   const lbl=g('langDdLabel'); if(lbl) lbl.textContent=lang.toUpperCase();
-  // Update back link — preserve referrer
-  const ref=new URLSearchParams(window.location.search).get('from');
-  if(ref==='index') g('navBack').href='index.html#properties';
-  else g('navBack').href='collection.html';
   if(propData) renderProperty(propData);
 }
 
