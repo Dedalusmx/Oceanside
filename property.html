@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property | OceanSide Properties</title>
+<meta name="description" content="Property in the Riviera Maya — OceanSide Properties">
+<link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dphbptped/image/upload/w_32,h_32,c_fill,f_png/v1793046204/Golden_Sunset_Ocean_Wave_Emblem_g9kcjb.png">
+<meta name="theme-color" content="#F0F2F4">
+
+<!-- ── GOOGLE ANALYTICS 4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3W7EMQBPC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q3W7EMQBPC', {
+    page_title: document.title,
+    page_location: window.location.href
+  });
+</script>
+
+<!-- OG tags — default use hero image, updated dynamically with property image -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OceanSide Properties">
+<meta id="ogTitle" property="og:title" content="Property | OceanSide Properties">
+<meta id="ogDesc" property="og:description" content="Property in the Riviera Maya — OceanSide Properties">
+<meta id="ogImg" property="og:image" content="https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta id="ogUrl" property="og:url" content="https://dedalusmx.github.io/Oceanside/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--char);font-family:'Jost',system-ui,sans-serif;font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+:root{
+  /* OceanSide: Mist White · Arena · Turquesa · Carbón */
+  --ivory:#F0F2F4;--sand:#EAE2D6;--turq:#36B8C9;--turq-dk:#2A9DAD;--char:#292B29;--muted:#5F615C;
+  --gold:var(--turq);--gold-lt:var(--char);--gold-dk:var(--turq-dk);
+  --bg:var(--ivory);--bg2:var(--ivory);--bg3:var(--sand);
+  --text:var(--char);--dim:var(--muted);--border:rgba(41,43,41,.12)
+}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;background:rgba(240,242,244,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 4%;gap:20px}
+.nav-back{font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;color:var(--dim);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;white-space:nowrap;flex-shrink:0}
+.nav-back:hover{color:var(--gold)}
+.nav-back svg{width:12px;height:12px}
+.nav-logo{flex:1;display:flex;justify-content:center;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:28px;width:28px;object-fit:contain;filter:brightness(1.2) drop-shadow(0 0 6px rgba(41,43,41,.4));flex-shrink:0}
+.nav-logo-txt{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;color:var(--text);white-space:nowrap;letter-spacing:.02em}
+@media(max-width:480px){
+  .nav-logo-txt{font-size:13px;letter-spacing:.01em}
+  .nav-back span{display:none}
+  .nav-back{gap:0}
+}
+.nav-controls{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+/* ── LANG DROPDOWN ── */
+.lang-dd{position:relative;flex-shrink:0}
+.lang-dd-btn{background:none;border:1px solid rgba(41,43,41,.22);font-family:'Jost',system-ui,sans-serif;font-size:9px;font-weight:300;letter-spacing:2px;color:var(--gold);cursor:pointer;padding:5px 10px;display:flex;align-items:center;gap:5px;transition:border-color .2s,color .2s;white-space:nowrap}
+.lang-dd-btn:hover{border-color:rgba(41,43,41,.5)}
+.lang-dd-btn svg{width:8px;height:8px;transition:transform .2s;flex-shrink:0}
+.lang-dd.open .lang-dd-btn svg{transform:rotate(180deg)}
+.lang-dd-menu{position:absolute;top:calc(100% + 6px);right:0;background:rgba(240,242,244,.98);backdrop-filter:blur(16px);border:1px solid var(--border);min-width:100%;display:none;flex-direction:column;z-index:300}
+.lang-dd.open .lang-dd-menu{display:flex}
+.lang-btn{background:none;border:none;font-family:'Jost',system-ui,sans-serif;font-size:9px;font-weight:300;letter-spacing:2px;color:var(--dim);cursor:pointer;padding:9px 14px;text-align:left;transition:color .2s,background .2s;white-space:nowrap}
+.lang-btn.active,.lang-btn:hover{color:var(--gold);background:rgba(41,43,41,.06)}
+.lang-sep{display:none}
+
+/* ── LOADING / ERROR ── */
+#loadingState{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;z-index:100}
+.load-logo img{height:56px;opacity:.7;animation:pulse 2s ease-in-out infinite}
+.load-txt{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--dim);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+#errorState{display:none;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;flex-direction:column;gap:20px;text-align:center;padding:40px}
+.err-ti{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;font-style:italic;color:var(--text);margin-bottom:8px}
+.err-sub{font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:32px}
+
+/* ── HERO ACTION BUTTONS (top-right) ── */
+.h-actions{position:absolute;top:72px;right:5%;z-index:3;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.h-share{background:rgba(41,43,41,.45);backdrop-filter:blur(8px);border:1px solid rgba(240,242,244,.35);color:rgba(240,242,244,.85);font-family:'Jost',system-ui,sans-serif;font-size:9px;font-weight:400;letter-spacing:3px;text-transform:uppercase;padding:10px 18px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .25s,border-color .25s,color .25s;opacity:0;animation:up .6s .5s forwards;width:100%;min-width:160px}
+.h-share:hover{background:rgba(41,43,41,.15);border-color:var(--gold);color:var(--gold-lt)}
+#propHero{position:relative;height:100vh;min-height:560px;display:flex;align-items:flex-end;padding-bottom:64px;overflow:hidden}
+.h-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);transition:transform 10s ease}
+.h-bg.ready{transform:scale(1)}
+.h-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(41,43,41,.98) 0%,rgba(41,43,41,.55) 45%,rgba(41,43,41,.28) 75%,rgba(41,43,41,.15) 100%)}
+.h-cnt{position:relative;z-index:2;padding:0 6%;width:100%;opacity:0;transform:translateY(20px);transition:opacity .6s .2s,transform .6s .2s}
+.h-cnt.ready{opacity:1;transform:none}
+.h-type{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.h-name{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vw,80px);font-weight:300;line-height:1.02;color:var(--text);margin-bottom:12px;text-shadow:0 2px 24px rgba(41,43,41,.5)}
+.h-loc{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,242,244,.75);margin-bottom:18px}
+.h-price{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--gold-lt);text-shadow:0 1px 12px rgba(41,43,41,.4)}
+
+/* ── BODY ── */
+#propBody{max-width:1200px;margin:0 auto;padding:72px 6% 0}
+.d-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--border);margin-bottom:56px}
+.d-stat{padding:24px 20px;background:var(--bg2);opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.d-stat.vis{opacity:1;transform:none}
+.d-stat:nth-child(1){transition-delay:.05s}.d-stat:nth-child(2){transition-delay:.1s}.d-stat:nth-child(3){transition-delay:.15s}
+.d-stat:nth-child(4){transition-delay:.2s}.d-stat:nth-child(5){transition-delay:.25s}.d-stat:nth-child(6){transition-delay:.3s}
+.d-stat-v{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--text);margin-bottom:4px}
+.d-stat-l{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
+
+/* ── AMENITIES ── */
+.d-amenities{max-width:1200px;margin:0 auto;padding:0 6% 72px}
+.d-amenities-ey{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.d-amenities-grid{display:flex;flex-wrap:wrap;gap:10px}
+.d-amenity{font-size:12px;font-weight:400;letter-spacing:1.5px;color:var(--muted);padding:9px 20px;border:1px solid rgba(41,43,41,.15);transition:border-color .25s,color .25s}
+.d-amenity:hover{border-color:var(--turq);color:var(--char)}
+.d-panel{position:relative;height:80vh;min-height:480px;overflow:hidden;display:flex;align-items:center}
+.d-panel-img-wrap{position:absolute;inset:-18% 0;z-index:0;will-change:transform;cursor:zoom-in}
+.d-panel-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.d-panel-ov-l{position:absolute;inset:0;background:linear-gradient(90deg,rgba(41,43,41,.96) 0%,rgba(41,43,41,.72) 40%,rgba(41,43,41,.25) 70%,rgba(41,43,41,.08) 100%);z-index:1;pointer-events:none}
+.d-panel-ov-r{position:absolute;inset:0;background:linear-gradient(270deg,rgba(41,43,41,.96) 0%,rgba(41,43,41,.72) 40%,rgba(41,43,41,.25) 70%,rgba(41,43,41,.08) 100%);z-index:1;pointer-events:none}
+.d-panel-txt{position:relative;z-index:2;padding:0 8%;max-width:560px;opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.d-panel-txt.right{margin-left:auto;text-align:right}
+.d-panel-txt.vis{opacity:1;transform:none}
+.d-panel-num{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:var(--ivory);opacity:.15;line-height:1;margin-bottom:-12px;display:block}
+.d-panel-p{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,22px);font-style:italic;font-weight:300;line-height:1.8;color:rgba(240,242,244,.95);text-shadow:0 1px 16px rgba(41,43,41,.6)}
+.d-panel-div{width:28px;height:1px;background:var(--gold);margin:16px 0;opacity:.6}
+.d-panel-txt.right .d-panel-div{margin-left:auto}
+
+/* ── GALLERY ── */
+.d-section{padding:72px 6%;max-width:1200px;margin:0 auto}
+.d-section-ey{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.d-gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.d-gallery-grid a{display:block;overflow:hidden;aspect-ratio:4/3;cursor:zoom-in}
+.d-gallery-grid a:first-child{grid-column:1/3;grid-row:1/3;aspect-ratio:unset}
+.d-gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.d-gallery-grid a:hover img{transform:scale(1.04)}
+
+/* ── PROP MAP ── */
+.d-map-container{height:420px;border:1px solid var(--border);overflow:hidden}
+
+/* ── CTA ── */
+.d-cta-panel{position:relative;min-height:55vh;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:72px}
+.d-cta-bg-img{position:absolute;inset:-15% 0;z-index:0}
+.d-cta-bg-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.3) saturate(.6)}
+.d-cta-content{position:relative;z-index:2;text-align:center;padding:56px 24px}
+.d-cta-eyebrow{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
+.d-cta-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,46px);font-weight:300;font-style:italic;color:var(--text);margin-bottom:36px;line-height:1.25}
+.d-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.d-cta-email{margin-top:24px;font-size:11px;font-weight:300;letter-spacing:2px}
+.d-cta-email a{color:rgba(240,242,244,.45);text-decoration:none;transition:color .2s}
+.d-cta-email a:hover{color:var(--gold-lt)}
+.d-cta-social{display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.d-cta-social-link{color:rgba(240,242,244,.3);transition:color .25s,transform .2s;display:flex;align-items:center}
+.d-cta-social-link:hover{color:var(--gold);transform:translateY(-2px)}
+.d-cta-social-link svg{width:16px;height:16px}
+.btn-g{display:inline-block;padding:14px 34px;background:var(--turq);color:var(--char);text-decoration:none;font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;transition:background .25s;cursor:pointer;border:none}
+.btn-g:hover{background:var(--gold-lt)}
+.btn-o{display:inline-block;padding:13px 34px;border:1px solid rgba(41,43,41,.42);color:rgba(240,242,244,.82);text-decoration:none;font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;transition:border-color .25s,color .25s;cursor:pointer;background:none}
+.btn-o:hover{border-color:var(--gold);color:var(--gold-lt)}
+
+/* ── MAPBOX POPUP — remove tip line ── */
+.mapboxgl-popup-tip{display:none!important}
+.mapboxgl-popup-content{padding:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;border:none!important}
+
+/* ── CONTACT FORM ── */
+.prop-form-wrap{max-width:1200px;margin:0 auto;padding:0 6% 100px}
+.prop-form-ey{font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.prop-form-ti{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);font-weight:300;font-style:italic;color:var(--text);margin-bottom:48px;line-height:1.2}
+.frm-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.frm-r{margin-bottom:24px}
+.frm-r label{display:block;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.frm-r input,.frm-r textarea,.frm-r select{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(41,43,41,.2);padding:10px 0;color:var(--text);font-family:'Jost',system-ui,sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .3s;appearance:none;-webkit-appearance:none}
+.frm-r input::placeholder,.frm-r textarea::placeholder{color:rgba(95,97,92,.6);font-weight:300;font-size:13px}
+.frm-r input:focus,.frm-r textarea:focus,.frm-r select:focus{border-color:var(--gold)}
+.frm-r textarea{resize:none;height:90px}
+.frm-r select option{background:var(--ivory);color:var(--text)}
+.frm-sub{width:100%;padding:17px;background:var(--turq);color:var(--char);border:none;font-family:'Jost',system-ui,sans-serif;font-size:9.5px;font-weight:500;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background .25s;margin-top:8px}
+.frm-sub:hover{background:var(--gold-lt)}
+.frm-sub:disabled{background:var(--gold-dk);cursor:default}
+/* Form overlay */
+#formOverlay{position:fixed;inset:0;z-index:2000;background:rgba(240,242,244,.96);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s}
+#formOverlay.open{opacity:1;pointer-events:auto}
+.fo-box{text-align:center;padding:52px 40px;max-width:440px}
+.fo-icon{font-size:32px;display:block;margin-bottom:20px}
+.fo-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;font-style:italic;color:var(--text);margin-bottom:12px}
+.fo-sub{font-size:12px;line-height:1.9;color:var(--dim);font-weight:300;margin-bottom:32px}
+.fo-btn{background:none;border:1px solid rgba(41,43,41,.4);color:var(--gold-lt);font-family:'Jost',system-ui,sans-serif;font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;padding:12px 36px;cursor:pointer;transition:border-color .25s,color .25s}
+.fo-btn:hover{border-color:var(--gold);color:var(--gold)}
+@media(max-width:600px){.frm-2{grid-template-columns:1fr}.fo-box{padding:40px 24px}}
+
+/* ── CTA INLINE FORM ── */
+.cta-form{margin:28px auto 0;max-width:480px}
+.cta-fields{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.cta-inp{width:100%;background:rgba(240,242,244,.1);border:none;border-bottom:1px solid rgba(41,43,41,.55);padding:14px 10px;color:var(--text);font-family:'Jost',system-ui,sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .3s,background .3s;text-align:center}
+.cta-inp::placeholder{color:rgba(240,242,244,.55);font-size:12px;letter-spacing:1px}
+.cta-inp:focus{border-color:var(--gold);background:rgba(240,242,244,.14)}
+.cta-send{width:100%;padding:15px;background:var(--turq);color:var(--char);border:none;font-family:'Jost',system-ui,sans-serif;font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:background .25s;margin-top:4px}
+.cta-send:hover{background:var(--gold-lt)}
+.cta-send:disabled{background:var(--gold-dk);cursor:default}
+/* ── CTA PHONE SPLIT ── */
+.cta-phone-split{display:flex;gap:8px;width:100%}
+.cta-dial-inp{width:80px;flex-shrink:0;background:rgba(240,242,244,.1);border:none;border-bottom:1px solid rgba(41,43,41,.55);padding:14px 8px;color:var(--text);font-family:'Jost',system-ui,sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color .3s,background .3s;text-align:center;letter-spacing:1px}
+.cta-dial-inp:focus{border-color:var(--gold);background:rgba(240,242,244,.14)}
+.cta-dial-inp::placeholder{color:rgba(240,242,244,.45);font-size:12px;letter-spacing:1px}
+.cta-phone-split .cta-inp{flex:1}
+#propFooter{padding:32px 6%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:0}
+.foot-copy{font-size:9px;letter-spacing:2px;color:var(--dim)}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--gold)}
+
+/* ── LIGHTBOX ── */
+#lightbox{position:fixed;inset:0;z-index:1500;background:rgba(41,43,41,.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
+#lightbox.open{opacity:1;pointer-events:auto}
+#lbImg{max-width:88vw;max-height:85vh;object-fit:contain;transform:scale(.96);transition:transform .3s,opacity .2s;cursor:default;display:block;user-select:none;-webkit-user-drag:none}
+#lightbox.open #lbImg{transform:scale(1)}
+.lb-close{position:absolute;top:20px;right:20px;background:none;border:1px solid rgba(41,43,41,.35);color:var(--gold);font-size:14px;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:border-color .2s,color .2s}
+.lb-close:hover{border-color:var(--gold);color:var(--gold-lt)}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(41,43,41,.5);border:1px solid rgba(41,43,41,.3);color:rgba(240,242,244,.7);width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s,border-color .2s,color .2s;backdrop-filter:blur(4px)}
+.lb-arrow:hover{background:rgba(41,43,41,.18);border-color:var(--gold);color:var(--gold-lt)}
+.lb-arrow svg{width:18px;height:18px;pointer-events:none}
+#lbPrev{left:16px}
+#lbNext{right:16px}
+.lb-counter{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:7px;align-items:center;z-index:10}
+.lb-dot{width:5px;height:5px;border-radius:50%;background:rgba(41,43,41,.25);transition:background .25s,transform .25s;cursor:pointer}
+.lb-dot.active{background:var(--gold);transform:scale(1.4)}
+@media(max-width:768px){
+  .lb-arrow{width:38px;height:38px}
+  #lbPrev{left:6px}
+  #lbNext{right:6px}
+  #lbImg{max-width:94vw;max-height:80vh}
+}
+
+/* ── TOAST ── */
+#shareToast{position:fixed;bottom:36px;left:50%;transform:translateX(-50%) translateY(16px);z-index:700;background:var(--bg2);border:1px solid var(--gold);color:var(--gold-lt);font-family:'Jost',system-ui,sans-serif;font-size:9px;font-weight:300;letter-spacing:3px;text-transform:uppercase;padding:12px 28px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap}
+#shareToast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── WA FLOAT ── */
+#waFloat{position:fixed;bottom:28px;right:28px;z-index:400;width:48px;height:48px;background:var(--bg2);border:1px solid rgba(41,43,41,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .5s,transform .5s,border-color .25s}
+#waFloat.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+#waFloat:hover{border-color:var(--gold)}
+#waFloat svg{width:22px;height:22px;fill:var(--gold)}
+
+@media(max-width:768px){
+  .d-gallery-grid{grid-template-columns:1fr 1fr}
+  .d-gallery-grid a:first-child{grid-column:1/3;grid-row:auto}
+  .d-map-container{height:280px}
+  .d-panel{height:60vh;min-height:360px}
+  #propBody{padding:48px 5% 0}
+  .d-section{padding:48px 5%}
+}
+/* ── IMAGE PROTECTION ── */
+.d-gallery-grid img,.d-panel-img-wrap img,.h-bg,.d-cta-bg-img img{
+  -webkit-user-select:none;user-select:none;pointer-events:none;
+  -webkit-touch-callout:none
+}
+.d-gallery-grid a,.d-panel-img-wrap{pointer-events:auto}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* ── OceanSide: ajustes sobre fondo claro ── */
+::selection{background:rgba(54,184,201,.22);color:var(--char)}
+.nav-logo img{width:auto;height:34px;filter:none}
+@media(max-width:600px){.nav-logo-txt{display:none}}
+.lang-dd-btn{color:var(--char)}
+.lang-btn.active,.lang-btn:hover{color:var(--char)}
+.d-amenities-ey,.d-section-ey,.prop-form-ey{color:var(--muted)}
+/* Texto sobre fotos (hero, paneles, CTA): claro */
+.h-name,.h-price,.d-cta-heading{color:var(--ivory)}
+.h-share:hover{color:var(--ivory);border-color:var(--turq)}
+.btn-g:hover,.cta-send:hover,.frm-sub:hover{background:var(--ivory);color:var(--char)}
+.btn-o{border-color:rgba(240,242,244,.55)}
+.btn-o:hover{border-color:var(--ivory);background:var(--ivory);color:var(--char)}
+.d-cta-email a:hover,.d-cta-social-link:hover{color:var(--turq)}
+.cta-inp,.cta-dial-inp{color:var(--ivory);border-bottom-color:rgba(240,242,244,.5)}
+.cta-inp:focus,.cta-dial-inp:focus{border-color:var(--turq)}
+/* Visor de fotos (fondo carbón) */
+.lb-close,.lb-arrow{border-color:rgba(240,242,244,.35);color:var(--ivory)}
+.lb-close:hover,.lb-arrow:hover{border-color:var(--turq);color:var(--turq)}
+.lb-dot{background:rgba(240,242,244,.3)}
+/* WhatsApp flotante */
+#waFloat{background:var(--ivory);border-color:rgba(41,43,41,.12);box-shadow:0 8px 28px -10px rgba(41,43,41,.35)}
+#waFloat svg{fill:var(--char)}
+#waFloat:hover{background:var(--turq);border-color:var(--turq)}
+/* Cifras: sin bloque gris en columnas vacías */
+.d-stats{background:none;gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.d-stat+.d-stat{border-left:1px solid var(--border)}
+/* Footer carbón, igual que index */
+#propFooter{background:var(--char);border-top:none}
+.foot-copy{color:rgba(240,242,244,.55)}
+.foot-links a{color:rgba(240,242,244,.7)}
+.foot-links a:hover{color:var(--turq)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-back" id="navBack" href="collection.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+    <span id="navBackTxt">BACK</span>
+  </a>
+  <a href="index.html" class="nav-logo">
+    <img src="https://res.cloudinary.com/dphbptped/image/upload/w_400,q_auto,f_auto/v1793046029/Oceanside_Properties_Sun_and_Waves_Logo_qequqt.png" alt="OceanSide Properties">
+    <span class="nav-logo-txt">OceanSide Properties</span>
+  </a>
+  <div class="nav-controls">
+    <div class="lang-dd" id="langDd">
+      <button class="lang-dd-btn" id="langDdBtn" onclick="toggleLangDd()">
+        <span id="langDdLabel">EN</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-dd-menu" id="langDdMenu">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- LOADING -->
+<div id="loadingState">
+  <div class="load-logo"><img src="https://res.cloudinary.com/dphbptped/image/upload/w_400,q_auto,f_auto/v1793046029/Oceanside_Properties_Sun_and_Waves_Logo_qequqt.png" alt=""></div>
+  <p class="load-txt" id="loadTxt">Loading property...</p>
+</div>
+
+<!-- ERROR -->
+<div id="errorState">
+  <p class="err-ti" id="errTi">Property not found</p>
+  <p class="err-sub" id="errSub">The requested property could not be loaded</p>
+  <a href="collection.html" class="btn-o" id="errBtn">View Collection</a>
+</div>
+
+<!-- HERO -->
+<div id="propHero" style="display:none">
+  <div class="h-bg" id="hBg"></div>
+  <div class="h-ov"></div>
+  <div class="h-cnt" id="hCnt">
+    <span class="h-type" id="hType"></span>
+    <h1 class="h-name" id="hName"></h1>
+    <p class="h-loc" id="hLoc"></p>
+    <p class="h-price" id="hPrice"></p>
+  </div>
+  <div class="h-actions">
+    <button class="h-share" id="hBrochure" onclick="requestBrochure()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span id="brochureTxt">BROCHURE</span>
+    </button>
+    <button class="h-share" id="hShare" onclick="shareProperty()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      <span id="shareTxt">SHARE</span>
+    </button>
+  </div>
+</div>
+
+<!-- BODY -->
+<div id="propBody" style="display:none">
+  <div class="d-stats" id="dStats"></div>
+  <div id="dAmenities"></div>
+</div>
+
+<!-- NARRATIVE -->
+<div id="dNarrative" style="display:none"></div>
+
+<!-- GALLERY -->
+<div id="dGallery" style="display:none"></div>
+
+<!-- MAP -->
+<div id="dMap" style="display:none"></div>
+
+<!-- CTA -->
+<div id="dCta" style="display:none"></div>
+
+<!-- FOOTER -->
+<footer id="propFooter" style="display:none">
+  <p class="foot-copy">© 2026 OceanSide Properties · Playa del Carmen, Quintana Roo, México</p>
+  <div class="foot-links">
+    <a href="index.html" id="footHome">Home</a>
+    <a href="collection.html" id="footCol">Collection</a>
+  </div>
+</footer>
+
+<!-- CONTACT FORM -->
+<div id="dForm" style="display:none"></div>
+
+<!-- FORM OVERLAY -->
+<div id="formOverlay">
+  <div class="fo-box">
+    <span class="fo-icon" id="foIcon">✦</span>
+    <h3 class="fo-title" id="foTitle"></h3>
+    <p class="fo-sub" id="foSub"></p>
+    <button class="fo-btn" id="foBtn" onclick="closeFormOverlay()"></button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button class="lb-close" id="lbClose">&#x2715;</button>
+  <button class="lb-arrow" id="lbPrev" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <img id="lbImg" src="" alt="" draggable="false">
+  <button class="lb-arrow" id="lbNext" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<!-- TOAST -->
+<div id="shareToast"></div>
+
+<!-- WA FLOAT -->
+<a id="waFloat" href="https://wa.me/18179415935?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20propiedades." target="_blank" title="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdEUO8SD2sTqn38dXV8VCzCddB5caiUUKpcbu6ufFsGYvdqEDadT67S88ltOsQamnVQ6itfSIMnv8r/pub?gid=0&single=true&output=csv';
+const MAPBOX_TOKEN = 'pk.eyJ1IjoibWV0YWNvbXByYXMiLCJhIjoiY21tc3Z0Njg1MDN1eDJ5cHQ5eWIwZG4zciJ9.jzsj45V8slnFVBaTWO_ZSw';
+const IMG_COLS = ['image[0].url','image[1].url','image[2].url','image[3].url','image[4].url','image[5].url','image[6].url','image[7].url','image[8].url','image[9].url'];
+
+let lang = 'en';
+let propData = null;
+let rates = {USD:0.058, CAD:0.079};
+let currency = 'MXN';
+
+const L = {
+  es:{back:'VOLVER',share:'COMPARTIR',brochure:'FOLLETO',loading:'Cargando propiedad...',notFound:'Propiedad no encontrada',notFoundSub:'La propiedad solicitada no pudo cargarse',viewCol:'Ver Colección',
+      rec:'Recámaras',ban:'Baños',area:'Área',park:'Estacionamiento',yr:'Año',tipo:'Tipo',
+      galLbl:'GALERÍA DE IMÁGENES',mapLbl:'UBICACIÓN',ctaEy:'SIGUIENTE PASO',
+      intLbl:'¿Te interesa esta propiedad?',tourLbl:'TOUR VIRTUAL',waLbl:'CONTÁCTENOS',
+      footHome:'Inicio',footCol:'Colección',toast:{copied:'ENLACE COPIADO',shared:'COMPARTIDO'}},
+  en:{back:'BACK',share:'SHARE',brochure:'BROCHURE',loading:'Loading property...',notFound:'Property not found',notFoundSub:'The requested property could not be loaded',viewCol:'View Collection',
+      rec:'Bedrooms',ban:'Bathrooms',area:'Area',park:'Parking',yr:'Year built',tipo:'Type',
+      galLbl:'IMAGE GALLERY',mapLbl:'LOCATION',ctaEy:'NEXT STEP',
+      intLbl:'Interested in this property?',tourLbl:'VIRTUAL TOUR',waLbl:'CONTACT US',
+      footHome:'Home',footCol:'Collection',toast:{copied:'LINK COPIED',shared:'SHARED'}}
+};
+
+const g = id => document.getElementById(id);
+
+function imgUrl(url, w, h){
+  if(!url) return '';
+  if(url.includes('cloudinary')){
+    const t='w_'+w+',q_auto,f_auto,c_fill'+(h?',h_'+h:'');
+    if(url.includes('/upload/'+t)) return url;
+    return url.replace('/upload/','/upload/'+t+'/');
+  }
+  return url;
+}
+
+function parsePrice(val){ return parseFloat(String(val||'').replace(/[^0-9.]/g,''))||0; }
+
+function formatCurrency(mxnPrice){
+  const n=parsePrice(mxnPrice);
+  if(!n) return '';
+  let amount,sym;
+  if(currency==='USD'){amount=n*rates.USD;sym='USD';}
+  else if(currency==='CAD'){amount=n*rates.CAD;sym='CAD';}
+  else{amount=n;sym='MXN';}
+  return sym+' $'+Math.round(amount).toLocaleString('en-US');
+}
+
+function parseLocation(locStr){
+  if(!locStr) return null;
+  const parts=locStr.split(',').map(s=>parseFloat(s.trim()));
+  if(parts.length===2&&!isNaN(parts[0])&&!isNaN(parts[1])) return {lat:parts[0],lng:parts[1]};
+  return null;
+}
+
+function getAllImgs(p){ return IMG_COLS.map(c=>p[c]).filter(u=>u&&u.trim()); }
+
+function isLand(p){
+  const t=(p['Tipo propiedad']||'').toLowerCase();
+  return t.includes('terreno')||t.includes('land')||t.includes('lote');
+}
+
+function parseListingType(raw){
+  const v=(raw||'').toLowerCase();
+  if(v.includes('sale')) return {es:'En Venta',en:'For Sale'}[lang]||'For Sale';
+  if(v.includes('rent')) return {es:'En Renta',en:'For Rent'}[lang]||'For Rent';
+  return raw;
+}
+
+function splitDesc(text,n){
+  if(!text||!text.trim()) return Array(n).fill('');
+  let chunks=text.split(/\n\n+/).map(s=>s.trim()).filter(Boolean);
+  if(chunks.length<2){
+    const sents=text.match(/[^.!?]+[.!?]+\s*/g)||[text];
+    const per=Math.ceil(sents.length/n);
+    chunks=[];
+    for(let i=0;i<sents.length;i+=per) chunks.push(sents.slice(i,i+per).join('').trim());
+  }
+  while(chunks.length<n) chunks.push(chunks[chunks.length-1]||'');
+  return chunks.slice(0,n);
+}
+
+function applyLang(){
+  const t=L[lang];
+  document.documentElement.lang=lang;
+  g('navBackTxt').textContent=t.back;
+  const st=g('shareTxt'); if(st) st.textContent=t.share;
+  const bt=g('brochureTxt'); if(bt) bt.textContent=t.brochure;
+  g('loadTxt').textContent=t.loading;
+  g('errTi').textContent=t.notFound;
+  g('errSub').textContent=t.notFoundSub;
+  g('errBtn').textContent=t.viewCol;
+  g('footHome').textContent=t.footHome;
+  g('footCol').textContent=t.footCol;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  // Update dropdown label
+  const lbl=g('langDdLabel'); if(lbl) lbl.textContent=lang.toUpperCase();
+  // Update back link — preserve referrer
+  const ref=new URLSearchParams(window.location.search).get('from');
+  if(ref==='index') g('navBack').href='index.html#properties';
+  else g('navBack').href='collection.html';
+  if(propData) renderProperty(propData);
+}
+
+function showError(){
+  g('loadingState').style.display='none';
+  g('errorState').style.display='flex';
+}
+
+function renderProperty(p){
+  const t=L[lang];
+  const imgs=getAllImgs(p);
+  const mainImg=imgUrl(imgs[0]||'',1920);
+
+  // Title & meta
+  const propName=p['Nombre']||'';
+  document.title=propName+' | OceanSide Properties';
+  g('ogTitle').content=propName+' | OceanSide Properties';
+  g('ogDesc').content=getLangDesc(p).substring(0,160)||[p['Colonia'],p['Ciudad']].filter(Boolean).join(', ')+' — '+formatCurrency(p['Precio']);
+  g('ogImg').content=imgUrl(imgs[0]||'',1200,630);
+  g('ogUrl').content=window.location.href;
+
+  // Hero
+  const hBg=g('hBg');
+  hBg.style.backgroundImage=`url('${mainImg}')`;
+  g('hType').textContent=parseListingType(p['listing_type']||'');
+  g('hName').textContent=propName;
+  g('hLoc').textContent=[p['Colonia'],p['Ciudad'],p['Estado']].filter(Boolean).join(' · ');
+  g('hPrice').textContent=formatCurrency(p['Precio']);
+
+  // Stats
+  const sL={rec:t.rec,ban:t.ban,area:t.area,park:t.park,yr:t.yr,tipo:t.tipo};
+  const stats=[
+    {v:p['Recámaras'],l:sL.rec},
+    {v:p['Baños'],l:sL.ban},
+    {v:p['Area']?(p['Area']+' '+(p['area_unit']||'m²')):'',l:sL.area},
+    {v:p['Cajon de estacionamiento'],l:sL.park},
+    {v:p['Año construcción'],l:sL.yr},
+    {v:p['Tipo propiedad'],l:sL.tipo}
+  ].filter(s=>s.v&&String(s.v).trim());
+  g('dStats').innerHTML=stats.map(s=>`<div class="d-stat"><div class="d-stat-v">${s.v}</div><div class="d-stat-l">${s.l}</div></div>`).join('');
+
+  // Amenities
+  const amenRaw = p['building_amenities[0]']||p['building_amenities']||'';
+  const amenLabel = {es:'AMENIDADES',en:'AMENITIES'}[lang];
+  const amenDict = {
+    en:{
+      'sky zone':'Sky Zone','jacuzzi':'Jacuzzi','infinity pool':'Infinity Pool',
+      'elevator':'Elevator','parking':'Parking','lobby':'Lobby','sun deck':'Sun Deck',
+      'grill zone':'Grill Zone','pool':'Pool','gym':'Gym','spa':'Spa',
+      'greenhouse':'Greenhouse','bar':'Bar','terrace':'Terrace','palapa':'Palapa',
+      'productive property':'Income Property','solar panels':'Solar Panels',
+      '26 solar panels':'26 Solar Panels','well':'Well','rooftop':'Rooftop',
+      'roof garden':'Rooftop','concierge':'Concierge','security':'Security',
+      'coworking':'Co-working','cinema':'Cinema','kids area':'Kids Area',
+      'yoga':'Yoga Area','bbq':'BBQ Area','storage':'Storage','laundry':'Laundry'
+    }
+  };
+  function translateAmenity(raw){
+    if(lang==='en'){
+      const dict = amenDict[lang];
+      const key = raw.toLowerCase().trim();
+      return dict[key] || raw.trim();
+    }
+    return raw.trim();
+  }
+  if(amenRaw && amenRaw.trim()){
+    const items = [...new Set(amenRaw.split(/[,;|\/]/).map(a=>a.trim()).filter(Boolean))];
+    g('dAmenities').innerHTML = `
+      <div class="d-amenities">
+        <span class="d-amenities-ey">${amenLabel}</span>
+        <div class="d-amenities-grid">
+          ${items.map(a=>`<span class="d-amenity">${translateAmenity(a)}</span>`).join('')}
+        </div>
+      </div>`;
+  } else {
+    g('dAmenities').innerHTML = '';
+  }
+
+  // Pick description based on language
+  function getLangDesc(p){
+    if(lang==='en' && p['description EN'] && p['description EN'].trim()) return p['description EN'];
+    return p['description']||'';
+  }
+
+  // Narrative panels
+  const gallery=imgs.slice(1).filter(Boolean);
+  const panelImgs=gallery.length?gallery:(imgs[0]?[imgs[0]]:[]);
+  const panelCount=Math.min(panelImgs.length,6);
+  const textChunks=splitDesc(getLangDesc(p),panelCount);
+  const romans=['I','II','III','IV','V','VI'];
+  g('dNarrative').innerHTML=panelImgs.slice(0,panelCount).map((img,i)=>{
+    const side=i%2===0?'left':'right';
+    const ov=side==='left'?'d-panel-ov-l':'d-panel-ov-r';
+    return `<div class="d-panel">
+      <div class="d-panel-img-wrap" data-parallax>
+        <img src="${imgUrl(img,1920)}" loading="lazy" onerror="this.style.opacity=0.15">
+      </div>
+      <div class="${ov}"></div>
+      <div class="d-panel-txt ${side}" data-txt>
+        <span class="d-panel-num">${romans[i]}</span>
+        <div class="d-panel-div"></div>
+        <p class="d-panel-p">${textChunks[i]}</p>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Gallery
+  if(imgs.length>1){
+    g('dGallery').innerHTML=`
+      <div class="d-section">
+        <span class="d-section-ey">${t.galLbl}</span>
+        <div class="d-gallery-grid">
+          ${imgs.map((src,i)=>`<a href="javascript:void(0)" onclick="openLightbox(${i})">
+            <img src="${imgUrl(src,800,600)}" loading="lazy" onerror="this.style.opacity=.1">
+          </a>`).join('')}
+        </div>
+      </div>`;
+    g('dGallery').style.display='block';
+  }
+
+  // Map
+  const loc=parseLocation(p['Location']||p['location']);
+  if(loc){
+    g('dMap').innerHTML=`
+      <div class="d-section">
+        <span class="d-section-ey">${t.mapLbl}</span>
+        <div class="d-map-container" id="dPropMap"></div>
+      </div>`;
+    g('dMap').style.display='block';
+    setTimeout(()=>{
+      mapboxgl.accessToken=MAPBOX_TOKEN;
+      const propLng=loc.lng, propLat=loc.lat;
+      // Always center on property at zoom 15
+      const pm=new mapboxgl.Map({container:'dPropMap',style:'mapbox://styles/mapbox/light-v11',center:[propLng,propLat],zoom:15,attributionControl:false});
+      pm.addControl(new mapboxgl.NavigationControl({showCompass:false}),'bottom-right');
+
+      // Popup style: no tip line
+      const popupOpts={offset:20,closeButton:false,closeOnClick:false};
+
+      // Property marker — gold circle
+      const propEl=document.createElement('div');
+      propEl.style.cssText='width:18px;height:18px;background:#36B8C9;border-radius:50%;border:3px solid #F0F2F4;box-shadow:0 2px 10px rgba(41,43,41,.35);cursor:pointer';
+      new mapboxgl.Marker(propEl).setLngLat([propLng,propLat])
+        .setPopup(new mapboxgl.Popup(popupOpts)
+          .setHTML('<div style="padding:10px 14px;background:#F0F2F4;color:#292B29;font-family:Jost,sans-serif;font-size:12px;letter-spacing:1px;border-radius:0;box-shadow:0 8px 24px -10px rgba(41,43,41,.35)">'+propName+'</div>'))
+        .addTo(pm);
+
+
+      setTimeout(()=>pm.resize(),100);
+    },300);
+  }
+
+  // WA message
+  const waUnit=p['Unidad']&&p['Unidad'].trim()?' — Unidad: '+p['Unidad'].trim():'';
+  const waMsg=encodeURIComponent('Hola, me interesa la propiedad: '+propName+waUnit);
+  const tourBtn=p['virtual_tour_url']?`<a href="${p['virtual_tour_url']}" target="_blank" class="btn-g">${t.tourLbl}</a>`:'';
+
+  // Auto-fill values for form
+  const listing=(p['listing_type']||'').toLowerCase();
+  const autoInterest = listing.includes('rent')
+    ? {es:'Renta',en:'Rental'}[lang]||'Rental'
+    : {es:'Compra de propiedad',en:'Property purchase'}[lang]||'Property purchase';
+  const autoMsg = propName + (waUnit ? ' —'+waUnit : '');
+
+  // CTA con formulario minimalista integrado
+  const fN={es:'Nombre',en:'Name'}[lang];
+  const fE={es:'Correo electrónico',en:'Email'}[lang];
+  const fP={es:'Teléfono',en:'Phone'}[lang];
+  const fS={es:'ENVIAR',en:'SEND'}[lang];
+
+  g('dCta').innerHTML=`
+    <div class="d-cta-panel">
+      <div class="d-cta-bg-img"><img src="${mainImg}" loading="lazy"></div>
+      <div class="d-cta-content">
+        <span class="d-cta-eyebrow">${t.ctaEy}</span>
+        <h2 class="d-cta-heading">${t.intLbl}</h2>
+        <div class="cta-form">
+          <input type="hidden" id="cf-interest" value="${autoInterest}">
+          <input type="hidden" id="cf-message" value="${autoMsg}">
+          <div class="cta-fields">
+            <input class="cta-inp" id="cf-name" type="text" placeholder="${fN}">
+            <div class="cta-phone-split">
+              <input class="cta-dial-inp" id="cf-dialcode" type="text" placeholder="+1" maxlength="5">
+              <input class="cta-inp" id="cf-phone" type="tel" placeholder="${fP}">
+            </div>
+            <input class="cta-inp" id="cf-email" type="email" placeholder="${fE}">
+          </div>
+          <button class="cta-send" id="cf-submit" onclick="submitContactForm()">${fS}</button>
+        </div>
+        ${tourBtn?`<div style="margin-top:20px">${tourBtn}</div>`:''}
+        <p class="d-cta-email"><a href="mailto:erika.oceansidemx@gmail.com">erika.oceansidemx@gmail.com</a></p>
+        <div class="d-cta-social">
+          <a href="mailto:erika.oceansidemx@gmail.com" class="d-cta-social-link" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></a>
+          <a href="https://www.instagram.com/oceanside_properties_int" target="_blank" rel="noopener" class="d-cta-social-link" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://wa.me/18179415935?text=${waMsg}" target="_blank" rel="noopener" class="d-cta-social-link" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+    </div>`;
+
+  // Contact form with auto-fill
+  const fI={es:'Su interés',en:'Your interest'}[lang];
+  const fO={
+    es:['Compra de propiedad','Renta','Inversión'],
+    en:['Property purchase','Rental','Investment']
+  }[lang];
+  const fTi={es:'Ponte en contacto',en:'Get in touch'}[lang];
+
+  g('dForm').style.display='none';
+
+  // Show all sections
+  g('propHero').style.display='flex';
+  g('propBody').style.display='block';
+  g('dNarrative').style.display='block';
+  g('dCta').style.display='block';
+  g('propFooter').style.display='flex';
+  g('loadingState').style.display='none';
+
+  // GA4 — property view + page update
+  if(typeof gtag==='function'){
+    gtag('config','G-Q3W7EMQBPC',{page_title:document.title,page_location:window.location.href});
+    gtag('event','view_property',{
+      property_name:propName,
+      property_city:(p['Ciudad']||''),
+      property_type:(p['listing_type']||''),
+      property_price:(p['Precio']||''),
+      language:lang
+    });
+  }
+
+  // Animate hero
+  setTimeout(()=>{
+    hBg.classList.add('ready');
+    g('hCnt').classList.add('ready');
+  },80);
+
+  // Animate stats on scroll
+  const statObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+  },{threshold:0.2});
+  document.querySelectorAll('.d-stat').forEach(el=>statObs.observe(el));
+
+  // Narrative text observer + parallax
+  const txtObs=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+  },{threshold:0.2});
+  document.querySelectorAll('[data-txt]').forEach(el=>txtObs.observe(el));
+
+  window.addEventListener('scroll',()=>{
+    document.querySelectorAll('[data-parallax]').forEach(wrap=>{
+      const r=wrap.getBoundingClientRect();
+      const rel=(r.top+r.height/2)-window.innerHeight/2;
+      wrap.style.transform='translateY('+(rel*0.14)+'px)';
+    });
+    g('waFloat').classList.toggle('visible',window.scrollY>300);
+  },{passive:true});
+
+  // Panel lightbox
+  document.querySelectorAll('.d-panel').forEach(panel=>{
+    const img=panel.querySelector('.d-panel-img-wrap img');
+    if(!img) return;
+    const txt=panel.querySelector('.d-panel-txt');
+    if(txt) txt.addEventListener('click',e=>e.stopPropagation());
+    panel.addEventListener('click',()=>openLightbox(img.src));
+  });
+}
+
+// ── BROCHURE REQUEST ──
+function requestBrochure(){
+  const name = _propName;
+  const unit = propData ? (propData['Unidad']||'').trim() : '';
+  const msg = {
+    es: 'Requiero el brochure de ' + name + (unit?' — '+unit:''),
+    en: 'I require a brochure for ' + name + (unit?' — '+unit:'')
+  }[lang];
+  const msgField = document.getElementById('cf-message');
+  if(msgField) msgField.value = msg;
+  const ctaEl = document.getElementById('dCta');
+  if(ctaEl) ctaEl.scrollIntoView({behavior:'smooth', block:'start'});
+}
+const WEBHOOK='https://n8n-production-3be9.up.railway.app/webhook/822a51cd-42c4-4f6c-a7f1-5d902b5d4830';
+
+function showFormOverlay(type,title,sub,btnTxt){
+  g('foIcon').textContent=type==='success'?'✦':'◇';
+  g('foIcon').style.color=type==='success'?'var(--turq)':'var(--char)';
+  g('foTitle').textContent=title;
+  g('foSub').textContent=sub;
+  g('foBtn').textContent=btnTxt;
+  g('formOverlay').classList.add('open');
+  if(type==='success') setTimeout(closeFormOverlay,5000);
+}
+function closeFormOverlay(){ g('formOverlay').classList.remove('open'); }
+
+function submitContactForm(){
+  const name=(g('cf-name')?.value||'').trim();
+  const email=(g('cf-email')?.value||'').trim();
+  const dialCode=(g('cf-dialcode')?.value||'').trim();
+  const phoneNum=(g('cf-phone')?.value||'').trim();
+  const phone=[dialCode,phoneNum].filter(Boolean).join('').replace(/\D/g,'');
+  const interest=(g('cf-interest')?.value||'').trim();
+  const message=(g('cf-message')?.value||'').trim();
+  const btn=g('cf-submit');
+  const sendLabel={es:'ENVIAR',en:'SEND'}[lang];
+
+  if(!name||!email||!email.includes('@')){
+    showFormOverlay('error',
+      {es:'Faltan datos',en:'Missing information'}[lang],
+      {es:'Por favor completa nombre y correo.',en:'Please fill in name and email.'}[lang],
+      {es:'REINTENTAR',en:'TRY AGAIN'}[lang]);
+    return;
+  }
+  btn.disabled=true;
+  btn.textContent={es:'ENVIANDO…',en:'SENDING…'}[lang];
+  btn.style.background='var(--gold-dk)';
+  fetch(WEBHOOK,{
+    method:'POST',
+    mode:'cors',
+    headers:{'Content-Type':'application/json','X-Source-Token':'LRS-2025-xK9mP2qR7nJ4wT8v'},
+    body:JSON.stringify({uid:crypto.randomUUID(),name,email,phone,interest,message,source:'oceanside-web',lang,timestamp:new Date().toLocaleString('sv-SE',{timeZone:'America/Cancun'}).replace(' ','T')})
+  }).then(r=>{
+    btn.disabled=false;
+    btn.textContent=sendLabel;
+    btn.style.background='var(--gold)';
+    if(r.ok){
+      g('cf-name').value='';
+      g('cf-email').value='';
+      if(g('cf-dialcode')) g('cf-dialcode').value='';
+      if(g('cf-phone')) g('cf-phone').value='';
+      if(typeof gtag==='function') gtag('event','generate_lead',{method:'property_form',property_name:interest,language:lang});
+      showFormOverlay('success',
+        {es:'Mensaje enviado',en:'Message sent'}[lang],
+        {es:'Gracias. Erika se pondrá en contacto con usted en breve.',en:'Thank you. Erika will be in touch shortly.'}[lang],
+        {es:'CERRAR',en:'CLOSE'}[lang]);
+    } else {
+      throw new Error('HTTP '+r.status);
+    }
+  }).catch(err=>{
+    console.error('Form submit error:', err);
+    btn.disabled=false;
+    btn.textContent=sendLabel;
+    btn.style.background='var(--gold)';
+    const subj=encodeURIComponent('Contacto LRS — '+name);
+    const body=encodeURIComponent('Nombre: '+name+'\nEmail: '+email+'\nTeléfono: '+phone+'\nInterés: '+interest+'\n\n'+message);
+    const mailto='mailto:erika.oceansidemx@gmail.com?subject='+subj+'&body='+body;
+    showFormOverlay('error',
+      {es:'Error al enviar',en:'Something went wrong'}[lang],
+      {es:'Haga clic abajo para contactarnos por correo.',en:'Click below to reach us by email.'}[lang],
+      {es:'ENVIAR POR EMAIL',en:'SEND BY EMAIL'}[lang]);
+    setTimeout(()=>{ const fb=g('foBtn'); if(fb) fb.onclick=()=>{ window.location.href=mailto; closeFormOverlay(); }; },50);
+  });
+}
+
+// ── LIGHTBOX ──
+let _lbImgs = [];
+let _lbIdx  = 0;
+let _lbTouchX = null;
+
+function _lbSetImg(idx, animate){
+  const img = g('lbImg');
+  _lbIdx = (idx + _lbImgs.length) % _lbImgs.length;
+  if(animate){
+    img.style.opacity='0';
+    img.style.transform='scale(0.94)';
+    setTimeout(()=>{
+      img.src = imgUrl(_lbImgs[_lbIdx], 1920);
+      img.style.opacity='1';
+      img.style.transform='scale(1)';
+    }, 150);
+  } else {
+    img.src = imgUrl(_lbImgs[_lbIdx], 1920);
+  }
+  // dots
+  const dots = g('lbCounter');
+  if(dots){
+    [...dots.children].forEach((d,i)=>d.classList.toggle('active',i===_lbIdx));
+  }
+  // show/hide arrows
+  const single = _lbImgs.length <= 1;
+  g('lbPrev').style.display = single ? 'none' : 'flex';
+  g('lbNext').style.display = single ? 'none' : 'flex';
+}
+
+function openLightbox(idx){
+  const imgs = getAllImgs(propData);
+  _lbImgs = imgs;
+  // build dots (max 12 shown)
+  const counter = g('lbCounter');
+  const maxDots = 12;
+  if(imgs.length > 1 && imgs.length <= maxDots){
+    counter.innerHTML = imgs.map((_,i)=>`<span class="lb-dot${i===idx?' active':''}" onclick="event.stopPropagation();_lbSetImg(${i},true)"></span>`).join('');
+  } else {
+    counter.innerHTML = '';
+  }
+  _lbSetImg(idx, false);
+  g('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeLightbox(){
+  g('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// Keyboard navigation
+document.addEventListener('keydown',e=>{
+  if(!g('lightbox').classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') _lbSetImg(_lbIdx+1, true);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')  _lbSetImg(_lbIdx-1, true);
+});
+
+// Arrow buttons
+g('lbPrev').addEventListener('click',e=>{ e.stopPropagation(); _lbSetImg(_lbIdx-1, true); });
+g('lbNext').addEventListener('click',e=>{ e.stopPropagation(); _lbSetImg(_lbIdx+1, true); });
+g('lbClose').addEventListener('click',e=>{ e.stopPropagation(); closeLightbox(); });
+
+// Click backdrop to close (not on image or arrows)
+g('lightbox').addEventListener('click',function(e){
+  if(e.target===this) closeLightbox();
+});
+
+// Touch swipe
+g('lightbox').addEventListener('touchstart',e=>{ _lbTouchX = e.touches[0].clientX; },{passive:true});
+g('lightbox').addEventListener('touchend',e=>{
+  if(_lbTouchX===null) return;
+  const dx = e.changedTouches[0].clientX - _lbTouchX;
+  _lbTouchX = null;
+  if(Math.abs(dx) < 40) return; // too short
+  if(dx < 0) _lbSetImg(_lbIdx+1, true);
+  else        _lbSetImg(_lbIdx-1, true);
+},{passive:true});
+
+// ── SHARE ──
+let _propName='';
+function shareProperty(){
+  const url=window.location.href;
+  const toast=g('shareToast');
+  const t=L[lang];
+  if(typeof gtag==='function') gtag('event','share',{method:navigator.share?'native':'clipboard',content_type:'property',item_id:_propName});
+  function showToast(msg){ toast.textContent='✦  '+msg+'  ✦'; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),2800); }
+  if(navigator.share){ navigator.share({title:_propName,url}).then(()=>showToast(t.toast.shared)).catch(()=>{}); return; }
+  if(navigator.clipboard){ navigator.clipboard.writeText(url).then(()=>showToast(t.toast.copied)).catch(()=>fallback(url,showToast,t.toast.copied)); }
+  else fallback(url,showToast,t.toast.copied);
+}
+function fallback(url,showToast,msg){ const el=document.createElement('input');el.value=url;document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);showToast(msg); }
+
+// ── LANG DROPDOWN ──
+function toggleLangDd(){
+  g('langDd').classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  const dd=g('langDd');
+  if(dd&&!dd.contains(e.target)) dd.classList.remove('open');
+});
+document.querySelectorAll('.lang-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    lang=b.dataset.lang;
+    applyLang();
+    g('langDd').classList.remove('open');
+  });
+});
+
+// ── IMAGE PROTECTION ──
+document.addEventListener('contextmenu',function(e){
+  if(e.target.tagName==='IMG'||e.target.closest('.d-gallery-grid,.d-panel-img-wrap,.h-bg,.d-cta-bg-img')){
+    e.preventDefault();return false;
+  }
+});
+document.addEventListener('dragstart',function(e){
+  if(e.target.tagName==='IMG') e.preventDefault();
+});
+
+// ── INIT ──
+async function init(){
+  // Read lang from URL
+  const params=new URLSearchParams(window.location.search);
+  const urlLang=params.get('lang');
+  if(urlLang&&L[urlLang]) lang=urlLang;
+
+  // Get property ID
+  const propId=params.get('id');
+  if(!propId){ showError(); return; }
+
+  applyLang();
+
+  // Exchange rates
+  try{
+    const r=await fetch('https://open.er-api.com/v6/latest/MXN');
+    const d=await r.json();
+    if(d.rates){rates.USD=d.rates.USD;rates.CAD=d.rates.CAD;}
+  }catch(e){}
+
+  // Fetch sheet
+  Papa.parse(SHEET_CSV,{
+    download:true,header:true,skipEmptyLines:true,
+    complete(res){
+      const all=res.data.filter(r=>IMG_COLS.some(c=>r[c]&&r[c].trim()));
+      // Find by home_listing_id or Nombre
+      const match=all.find(r=>(r['home_listing_id']||'')=== propId)||(all.find(r=>encodeURIComponent(r['Nombre']||'')===propId));
+      if(!match){ showError(); return; }
+      propData=match;
+      _propName=match['Nombre']||'';
+      renderProperty(match);
+    },
+    error(){ showError(); }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
