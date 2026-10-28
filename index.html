@@ -571,7 +571,9 @@ footer{padding:64px 6% 48px;background:var(--char);display:flex;flex-direction:c
 .am-lbl{display:block;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--char);margin-bottom:6px}
 .am-help{font-size:14.5px;line-height:1.75;color:var(--muted);padding-top:14px;border-top:1px solid var(--line)}
 .am-acts{display:flex;flex-wrap:wrap;gap:18px 24px;align-items:center;margin-top:30px}
+.am-acts .btn-g{white-space:normal;text-align:center;line-height:1.5;padding:15px 26px;max-width:100%}
 .am-acts .btn-g:hover{background:var(--char);color:var(--ivory)}
+@media(max-width:700px){.am-acts .btn-g{width:100%}}
 @media(max-width:700px){
   #areaModal{padding:0;align-items:flex-end}
   .am-box{grid-template-columns:1fr;max-height:92vh}
@@ -587,11 +589,10 @@ footer{padding:64px 6% 48px;background:var(--char);display:flex;flex-direction:c
 .ig-follow:hover{background:var(--char);border-color:var(--char);color:var(--ivory)}
 .ig-g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .ig-c{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--ivory)}
-.ig-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--sand)}
+.ig-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--sand)}
 .ig-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1s var(--ease)}
 .ig-c:hover .ig-media img{transform:scale(1.04)}
 .ig-media.empty{background-image:repeating-linear-gradient(0deg,rgba(240,242,244,.14) 0 1px,transparent 1px 9px),repeating-linear-gradient(0deg,rgba(41,43,41,.014) 0 2px,transparent 2px 37px)}
-.ig-media.empty{aspect-ratio:16/10}          /* sin portada: tarjeta más baja */
 .ig-glyph{display:none}
 .ig-media.empty .ig-glyph{display:flex;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--char);opacity:.35;transition:opacity .4s,color .4s}
 .ig-media.empty .ig-glyph svg{width:46px;height:46px}
@@ -602,8 +603,8 @@ footer{padding:64px 6% 48px;background:var(--char);display:flex;flex-direction:c
 .ig-ti{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(22px,2vw,26px);color:var(--char);margin-bottom:8px}
 .ig-tx{font-size:14.5px;line-height:1.75;color:var(--muted);margin-bottom:16px}
 .ig-c:hover .prp-lk{color:var(--turq-dk)}
-@media(max-width:900px){.ig-g{grid-template-columns:1fr 1fr}.ig-c:last-child{grid-column:1/-1}.ig-c:last-child .ig-media{aspect-ratio:16/9}}
-@media(max-width:600px){.ig-g{grid-template-columns:1fr}.ig-media{aspect-ratio:16/10}.ig-c:last-child .ig-media{aspect-ratio:16/10}.ig-follow{margin-bottom:40px}}
+@media(max-width:900px){.ig-g{grid-template-columns:1fr 1fr}.ig-c:last-child{grid-column:1/-1}}
+@media(max-width:600px){.ig-g{grid-template-columns:1fr}.ig-follow{margin-bottom:40px}}
 
 /* ── ANIMATIONS ── */
 @keyframes bodyIn{to{opacity:1}}
@@ -1407,19 +1408,19 @@ document.addEventListener('DOMContentLoaded', updateWaFloat);
 //      propiedad del catálogo en esa ciudad; si no hay, se muestra una tarjeta tipográfica.
 // details: lifestyle · location · propertyTypes · buyers — solo se muestran si tienen texto.
 const AREAS = [
-  { key:'playa-del-carmen', name:'Playa del Carmen', city:'playa del carmen', show:true, img:'https://res.cloudinary.com/dphbptped/image/upload/v1793073541/pexels-mayami-20065870_zdc7zi.jpg',
+  { key:'playa-del-carmen', name:'Playa del Carmen', city:'playa del carmen', show:true, img:'',
     desc:{ en:'A walkable beach town with a lively center, the cafés and shops of Fifth Avenue, and the sea always a few blocks away.',
            es:'Un pueblo de playa para recorrer a pie, con un centro lleno de vida, los cafés y tiendas de la Quinta Avenida y el mar siempre a unas cuadras.' },
     details:{ en:{}, es:{} } },
-  { key:'tulum', name:'Tulum', city:'tulum', show:true, img:'https://res.cloudinary.com/dphbptped/image/upload/v1793073864/pexels-amar-14359340_oc24r4.jpg',
+  { key:'tulum', name:'Tulum', city:'tulum', show:true, img:'',
     desc:{ en:'Jungle, cenotes and a laid-back coastline, with a slower pace and a close connection to nature.',
            es:'Selva, cenotes y una costa relajada, con un ritmo más pausado y una conexión cercana con la naturaleza.' },
     details:{ en:{}, es:{} } },
-  { key:'puerto-aventuras', name:'Puerto Aventuras', city:'puerto aventuras', show:true, img:'https://res.cloudinary.com/dphbptped/image/upload/v1793074302/Screenshot_2026-10-26-23-10-40-929_com.openai.chatgpt-edit_y7xsyl.jpg',
+  { key:'puerto-aventuras', name:'Puerto Aventuras', city:'puerto aventuras', show:true, img:'',
     desc:{ en:'A community built around a marina, with a calmer, residential feel and life close to the water.',
            es:'Una comunidad en torno a una marina, con un ambiente más tranquilo y residencial, y la vida junto al agua.' },
     details:{ en:{}, es:{} } },
-  { key:'akumal', name:'Akumal', city:'akumal', show:true, img:'https://res.cloudinary.com/dphbptped/image/upload/v1793074495/pexels-alex-ochoa-6230602-5982860_sjemhm.jpg',
+  { key:'akumal', name:'Akumal', city:'akumal', show:true, img:'',
     desc:{ en:'A quiet bay known for its sea turtles and snorkeling — a good fit for a simple life by the sea.',
            es:'Una bahía tranquila conocida por sus tortugas marinas y el snorkel, ideal para una vida sencilla junto al mar.' },
     details:{ en:{}, es:{} } }
@@ -1518,9 +1519,9 @@ window.addEventListener('load', ()=>{ if(location.hash.startsWith('#area-')) ope
 const IG_PROFILE = 'https://www.instagram.com/oceanside_properties_int';
 const IG_HANDLE  = '@oceanside_properties_int';
 const IG_CARDS = [
-  { cat:'explore',  url:'https://www.instagram.com/p/DCEtXJVsnVI/?xtok=MXN6b2ZyeTI4aTB3dA==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793075850/IMG_20261026_233700_zcqodf.jpg' },
-  { cat:'stories',  url:'https://www.instagram.com/reel/DakyCtHRQ5Y/?dlrf=MXZjdmx4MHBka3F3NA==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793076187/file_00000000637081f9b47ccf5cb17806ab_jezqe6.png' },
-  { cat:'insights', url:'https://www.instagram.com/reel/C3QNK5ZuiXm/?mdxt=MThlcnEwMHVwbmxkYg==', img:'https://res.cloudinary.com/dphbptped/image/upload/v1793077641/file_00000000394481f9970616df709f2746_xpqkra.png' }
+  { cat:'explore',  url:'', img:'' },
+  { cat:'stories',  url:'', img:'' },
+  { cat:'insights', url:'', img:'' }
 ];
 const IG_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></svg>`;
 function renderInstagram(){
@@ -1534,7 +1535,7 @@ function renderInstagram(){
     const cat  = t.igCats[c.cat];
     const href = c.url || IG_PROFILE;
     const media = c.img
-      ? `<img src="${imgUrl(c.img, 1200, 900)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
+      ? `<img src="${imgUrl(c.img, 800, 1000)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
       : '';
     return `
     <a class="ig-c rev" href="${href}" target="_blank" rel="noopener" aria-label="${cat.ti} — Instagram">
