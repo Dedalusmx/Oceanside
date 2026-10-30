@@ -1535,7 +1535,7 @@ function renderInstagram(){
     const cat  = t.igCats[c.cat];
     const href = c.url || IG_PROFILE;
     const media = c.img
-      ? `<img src="${imgUrl(c.img, 800, 1000)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
+      ? `<img src="${imgUrl(c.img, 1200, 900)}" alt="" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty');this.remove()">`
       : '';
     return `
     <a class="ig-c rev" href="${href}" target="_blank" rel="noopener" aria-label="${cat.ti} — Instagram">
