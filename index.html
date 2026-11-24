@@ -1243,8 +1243,8 @@ const L = {
     abEy:"VI · ABOUT",
     abTi:"MEET ERIKA SALAZAR",
     abSub:"Your International Real Estate Advisor",
-    abIntro:["I’m a Texas Realtor with an international perspective, a background in interior design, and a passion for discovering the places people are meant to call home.", "My experience in Caribbean and international real estate, combined with my eye for Bohemian Modern design, allows me to see beyond a property—to envision the lifestyle and possibilities within it. My design work has also been featured on HGTV.", "Today, I bring that perspective to Texas real estate while connecting clients with opportunities across Texas, Mexico, and the Caribbean.", "I believe a home is more than an address. It’s where you grow, evolve, and step into what comes next.", "Like a butterfly, every new home represents transformation—a chance to spread your wings and begin a new chapter.", "And I love being the person who helps you find your nest—and puts the keys to your future in your hands."],
-    abSign:"Texas roots. International vision. A designer’s eye. Your next chapter.",
+    abIntro:["Buying a property is a personal decision, and you deserve to understand every step. My approach is built around listening to your goals, helping you explore your options, and making the process easier to navigate — whether you’re buying your first home, considering an investment, or planning a new chapter by the Caribbean.", "I believe real estate guidance should feel personal, transparent, and accessible. My goal is to help you ask the right questions, understand your options, and move forward with greater clarity."],
+    abSign:"",
     abAppTi:"My Approach",
     abApproach:"Every client has a different story, and every property decision is personal. I listen first, take time to understand your priorities, and help you navigate your options with honest guidance and attentive service — whether you’re taking your first step into homeownership or pursuing your next investment.",
     abMisTi:"My Mission",
@@ -1329,8 +1329,8 @@ const L = {
     abEy:"VI · ACERCA DE",
     abTi:"CONOZCA A ERIKA SALAZAR",
     abSub:"Su asesora inmobiliaria internacional",
-    abIntro:["Soy Realtor en Texas con una perspectiva internacional, formación en diseño de interiores y una pasión por descubrir los lugares a los que cada persona está destinada a llamar hogar.", "Mi experiencia en bienes raíces en el Caribe y a nivel internacional, junto con mi ojo para el diseño Bohemian Modern, me permite ver más allá de una propiedad: imaginar el estilo de vida y las posibilidades que hay en ella. Mi trabajo de diseño también ha aparecido en HGTV.", "Hoy llevo esa perspectiva al mercado inmobiliario de Texas, mientras conecto a mis clientes con oportunidades en Texas, México y el Caribe.", "Creo que un hogar es más que una dirección. Es donde usted crece, evoluciona y da el paso hacia lo que sigue.", "Como una mariposa, cada nuevo hogar representa una transformación: la oportunidad de extender las alas y comenzar un nuevo capítulo.", "Y me encanta ser quien le ayuda a encontrar su nido y pone en sus manos las llaves de su futuro."],
-    abSign:"Raíces en Texas. Visión internacional. Ojo de diseñadora. Su próximo capítulo.",
+    abIntro:["Comprar una propiedad es una decisión personal, y usted merece entender cada paso. Mi forma de trabajar se basa en escuchar sus metas, ayudarle a explorar sus opciones y hacer que el proceso sea más fácil de recorrer — ya sea que esté comprando su primera vivienda, considerando una inversión o planeando un nuevo capítulo junto al Caribe.", "Creo que la asesoría inmobiliaria debe sentirse personal, transparente y accesible. Mi objetivo es ayudarle a hacer las preguntas correctas, entender sus opciones y avanzar con mayor claridad."],
+    abSign:"",
     abAppTi:"Mi enfoque",
     abApproach:"Cada cliente tiene una historia distinta, y cada decisión inmobiliaria es personal. Primero escucho, me tomo el tiempo de entender sus prioridades y le ayudo a explorar sus opciones con una asesoría honesta y un servicio atento — ya sea que esté dando su primer paso hacia una casa propia o buscando su próxima inversión.",
     abMisTi:"Mi misión",
@@ -1811,11 +1811,13 @@ let _tmRows = [];
 let _tmLastFocus = null;
 
 function tmUrl(u){ return u.startsWith('http') ? u : 'https://' + u; }
+// Lada que se agrega a números de 10 dígitos sin código de país (1 = EE. UU./Canadá)
+const TM_DEFAULT_CC = '1';
 function tmWaUrl(v){
   if(!v) return '';
   if(/^https?:/i.test(v)) return v;
   let d = v.replace(/\D/g,'');
-  if(d.length === 10) d = '52' + d;          // número local MX sin lada país
+  if(d.length === 10) d = TM_DEFAULT_CC + d;
   return d ? 'https://wa.me/' + d : '';
 }
 function tmBio(r){
@@ -1823,7 +1825,8 @@ function tmBio(r){
   return ((r[k]||'').trim() || (r['Bio']||r['bio']||r['BIO']||'').trim());
 }
 function openTm(i){
-  const r = _tmRows[i]; if(!r) return;
+  const r = _tmRows[i] || (i===0 ? {Assignee:'Erika Salazar', Rol:'', Instagram:IG_PROFILE} : null);
+  if(!r) return;
   const name   = (r['Assignee']||'').trim();
   const pic    = (r['Pic url']||r['Pic_url']||r['pic url']||'').trim();
   const imgBox = g('tmmImg');
@@ -1842,7 +1845,7 @@ function openTm(i){
   g('tmmBio').textContent = bio;
   g('tmmBio').style.display = bio ? '' : 'none';
 
-  const wa = tmWaUrl((r['WhatsApp']||r['Whatsapp']||r['whatsapp']||r['Telefono']||r['Teléfono']||r['Phone']||r['Celular']||'').trim());
+  const wa = tmWaUrl((r['WhatsApp']||r['Whatsapp']||r['whatsapp']||r['Telefono']||r['Teléfono']||r['Phone']||r['Celular']||'').trim()) || ('https://wa.me/' + WA_NUMBER);
   const fb = (r['Facebook']||'').trim();
   const ig = (r['Instagram']||'').trim();
   const li = (r['LinkedIn']||r['Linkedin']||'').trim();
@@ -1858,7 +1861,7 @@ function openTm(i){
   _tmLastFocus = document.activeElement;
   g('tmModal').classList.add('open');
   document.body.style.overflow = 'hidden';
-  setTimeout(()=>{ const c = document.querySelector('.tmm-close'); if(c) c.focus(); }, 50);
+  setTimeout(()=>{ const c = g('tmModal').querySelector('.tmm-close'); if(c) c.focus(); }, 50);
 
   if(typeof gtag === 'function') gtag('event','team_profile_open',{event_category:'About Us',member:name,language:lang});
 }
