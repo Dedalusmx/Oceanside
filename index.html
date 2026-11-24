@@ -22,8 +22,8 @@
 <!-- ── FAVICON ── -->
 <meta name="theme-color" content="#F0F2F4">
 <meta name="facebook-domain-verification" content="p7celolvqe05rgwehcwh373cqthcba">
-<meta name="description" content="Personal, international real estate guidance with Erika Salazar. Explore properties for a first home, an investment, or a new chapter by the sea.">
-<meta name="keywords" content="international real estate, buy property abroad, buy property in Mexico, Playa del Carmen properties for sale, Tulum real estate, real estate advisor, Erika Salazar">
+<meta name="description" content="OceanSide Properties — discover real estate globally for your next chapter. Personal guidance for a first home, an investment, or a new life by the sea.">
+<meta name="keywords" content="international real estate, buy property abroad, buy property in Mexico, Playa del Carmen properties for sale, Tulum real estate, real estate advisor, OceanSide Properties">
 <meta name="author" content="OceanSide Properties">
 <meta name="robots" content="index, follow">
 
@@ -43,7 +43,7 @@
 <meta property="og:url" content="https://dedalusmx.github.io/Oceanside/">
 <meta property="og:site_name" content="OceanSide Properties">
 <meta property="og:title" content="OceanSide Properties | International">
-<meta property="og:description" content="Find your place. Feel your freedom. Personal international real estate guidance with Erika Salazar.">
+<meta property="og:description" content="Find your place. Feel your freedom. Discover real estate globally for your next chapter with OceanSide Properties.">
 <meta property="og:image" content="https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -54,7 +54,7 @@
 <!-- ── TWITTER CARD ── -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OceanSide Properties | International">
-<meta name="twitter:description" content="Personal international real estate guidance with Erika Salazar.">
+<meta name="twitter:description" content="Discover real estate globally for your next chapter.">
 <meta name="twitter:image" content="https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png">
 
 <!-- ── SCHEMA.ORG — LOCAL BUSINESS ── -->
@@ -63,7 +63,7 @@
   "@context": "https://schema.org",
   "@type": "RealEstateAgent",
   "name": "OceanSide Properties",
-  "description": "Personal international real estate guidance led by advisor Erika Salazar.",
+  "description": "OceanSide Properties offers personal, international real estate guidance — discover real estate globally for your next chapter.",
   "url": "https://dedalusmx.github.io/Oceanside/",
   "logo": "https://res.cloudinary.com/dphbptped/image/upload/w_400,q_auto,f_png/v1793046029/Oceanside_Properties_Sun_and_Waves_Logo_qequqt.png",
   "image": "https://res.cloudinary.com/dphbptped/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_jpg/v1793068993/Encuentra_tu_lugar_junto_al_mar_g0o4fo.png",
@@ -1027,11 +1027,11 @@ function getDesc(p){
   if(lang==='en' && p['description EN'] && p['description EN'].trim()) return p['description EN'];
   return p['description']||'';
 }
-// WhatsApp a Erika sobre una propiedad (ES → español, resto → inglés)
+// WhatsApp a OceanSide sobre una propiedad (ES → español, resto → inglés)
 function askErikaHref(name){
   const msg = lang === 'es'
-    ? `Hola Erika, me gustaría recibir información sobre ${name}.`
-    : `Hi Erika, I’d like more information about ${name}.`;
+    ? `Hola OceanSide, me gustaría recibir información sobre ${name}.`
+    : `Hi OceanSide, I’d like more information about ${name}.`;
   return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
 }
 function renderPropsFromData(data){
@@ -1218,22 +1218,22 @@ const L = {
     href:["#hero", "#properties", "#services", "#invest", "#about", "#contact"],
     hEy:"PERSONAL REAL ESTATE GUIDANCE · INTERNATIONAL",
     hTi:"Find your place.<br><em>Feel your freedom.</em>",
-    hSlogan:"Discover international real estate opportunities with personal guidance tailored to your goals, lifestyle, and next chapter.",
+    hSlogan:"Discover real estate globally for your next chapter.",
     c1:"EXPLORE PROPERTIES",
-    c2:"TALK TO ERIKA",
+    c2:"TALK TO US",
     mfTi:"More than a real estate agency.<br>A partner in your next chapter.",
     mfTx:"<p>At OceanSide Properties, we believe finding a home is about more than buying a property — it’s about creating a life that feels right for you. Whether you’re taking your first step toward homeownership, finding a place to grow together, investing in new opportunities, or settling into a slower, more meaningful chapter by the sea, we’re here to guide you every step of the way.</p><p>From discovering the right property and exploring your options to navigating the buying process and beyond, we bring together trusted expertise, personalized guidance, and quality service to make the journey feel clear, accessible, and rewarding.</p><p class=\"mf-sign\">Your goals. Your journey. A place to call your own.</p>",
     pEy:"II · PROPERTIES",
     pTi:"FIND A PROPERTY THAT FITS YOUR LIFE",
-    pTx:"Browse current international opportunities. If something catches your eye, ask Erika — she’ll walk you through the details.",
+    pTx:"Browse current international opportunities. If something catches your eye, ask us — we’ll walk you through the details.",
     prpOf:"OF",
     prpLbl:"PROPERTIES",
     prpLoad:"LOAD",
     prpMore:"MORE",
     prpLoading:"LOADING...",
-    prpAsk:"ASK ERIKA",
+    prpAsk:"ASK ABOUT THIS PROPERTY",
     sEy:"IV · SERVICES",
-    sTi:"HOW I CAN HELP",
+    sTi:"HOW WE CAN HELP",
     srv:[{"k": "first_home", "ti": "Buying Your First Home", "de": "Understand your options, explore suitable properties, and navigate the buying process with personalized guidance."}, {"k": "investment", "ti": "Exploring Real Estate Investments", "de": "Discover opportunities, compare relevant property details, and understand the factors to evaluate before making an investment decision."}, {"k": "next_chapter", "ti": "Finding Your Next Chapter", "de": "Explore properties that fit your preferred lifestyle, location, and plans for your next chapter."}],
     srvCta:"EXPLORE YOUR OPTIONS",
     iEy:"V · INVEST",
@@ -1254,18 +1254,18 @@ const L = {
     gTi:"REAL ESTATE, MADE CLEAR",
     gTx:"A few essentials worth understanding before you start your search.",
     edu:[{"ti": "Buying Your First Property in Mexico", "tx": "Foreign buyers can own property in Mexico. In Mexico’s coastal restricted zone, this is usually done through a bank trust (fideicomiso), and every purchase is formalized before a notary public."}, {"ti": "Understanding the Costs of Buying", "tx": "Beyond the price, plan for closing costs such as acquisition tax, notary fees, appraisal, and registration — plus trust fees if you buy through a fideicomiso. Amounts vary, so ask for an itemized estimate early."}, {"ti": "Choosing the Right Area", "tx": "Playa del Carmen, Tulum, Puerto Morelos, and Cancún each offer a different pace, price range, and lifestyle. Start with how you plan to use the property — living, vacationing, or renting — and narrow down from there."}],
-    eduAsk:"ASK ERIKA ABOUT THIS",
+    eduAsk:"ASK US ABOUT THIS",
     tEy:"VIII · WORKING TOGETHER",
-    tTi:"WHAT TO EXPECT WHEN WORKING WITH ERIKA",
+    tTi:"WHAT TO EXPECT WHEN WORKING WITH OCEANSIDE",
     exp:[{"ti": "Personalized attention", "tx": "Your goals, budget, and timeline shape every recommendation."}, {"ti": "Clear communication", "tx": "Straight answers in plain language — no question is too basic."}, {"ti": "Guidance tailored to your goals", "tx": "Whether it’s a first home, an investment, or a new chapter, the guidance fits where you are."}],
     tst:[{"tx": "Our experience with OceanSide Properties was exceptional. Their team guided us at every step, offering personalized service to find our dream home.", "au": "Aline & Martin Rieu"}, {"tx": "The rental of our vacation villa went smoothly thanks to the team's professionalism. We are delighted with their exceptional service.", "au": "Sophie Duchamps"}, {"tx": "As an investor, I was impressed by the team's in-depth market knowledge, which allowed me to make a highly lucrative investment.", "au": "Paul Simon"}],
     cEy:"IX · CONTACT",
     cTi:"LET’S TALK ABOUT YOUR NEXT CHAPTER",
-    cIntro:"Tell me what you’re looking for, what matters to you, and where you are in the process. We’ll explore your options together, with no pressure to have everything figured out from the start.",
+    cIntro:"Tell us what you’re looking for, what matters to you, and where you are in the process. We’ll explore your options together, with no pressure to have everything figured out from the start.",
     cPh:"Phone",
     cEm:"Email",
     cWa:"WhatsApp",
-    cWaTx:"Message Erika",
+    cWaTx:"Message us",
     fN:"Name",
     fMt:"Preferred contact method",
     fMo:["WhatsApp", "Phone call", "Email"],
@@ -1278,7 +1278,7 @@ const L = {
     fBo:["Under US$150k", "US$150k–300k", "US$300k–500k", "Over US$500k", "Prefer not to say"],
     fM:"Message (optional)",
     fS:"SEND MESSAGE",
-    msg:{"errT": "Missing information", "errN": "Please add your name.", "errC": "Please add a way to reach you — email or phone.", "okT": "Message sent", "okS": "Thank you — Erika will be in touch soon.", "failT": "Something went wrong", "failS": "Click below to send your message by email instead.", "tryA": "TRY AGAIN", "close": "CLOSE", "mail": "SEND BY EMAIL", "sending": "SENDING…"},
+    msg:{"errT": "Missing information", "errN": "Please add your name.", "errC": "Please add a way to reach you — email or phone.", "okT": "Message sent", "okS": "Thank you — we’ll be in touch soon.", "failT": "Something went wrong", "failS": "Click below to send your message by email instead.", "tryA": "TRY AGAIN", "close": "CLOSE", "mail": "SEND BY EMAIL", "sending": "SENDING…"},
     ftL:"Legal Notice",
     ftP:"Privacy Policy",
     ftC:"Cookies",
@@ -1289,8 +1289,8 @@ const L = {
     arCta:"EXPLORE THE AREA",
     arRegion:"QUINTANA ROO · MEXICO",
     arProps:"VIEW PROPERTIES IN {a}",
-    arAsk:"ASK ERIKA ABOUT {a}",
-    arHelp:"Want to know what living or buying here is really like? Ask Erika — she’ll share practical guidance for your situation.",
+    arAsk:"ASK US ABOUT {a}",
+    arHelp:"Want to know what living or buying here is really like? Ask us — we’ll share practical guidance for your situation.",
     igEy:"III · LIFESTYLE",
     igTi:"LIFE BEYOND THE PROPERTY",
     igTx:"Discover the places, spaces and little moments that make a new place feel like home.",
@@ -1304,22 +1304,22 @@ const L = {
     href:["#hero", "#properties", "#services", "#invest", "#about", "#contact"],
     hEy:"ASESORÍA INMOBILIARIA PERSONAL · INTERNACIONAL",
     hTi:"Encuentre su lugar.<br><em>Sienta su libertad.</em>",
-    hSlogan:"Descubra oportunidades inmobiliarias internacionales con asesoría personal, pensada para sus metas, su estilo de vida y su próximo capítulo.",
+    hSlogan:"Descubra bienes raíces en todo el mundo para su próximo capítulo.",
     c1:"EXPLORAR PROPIEDADES",
-    c2:"HABLAR CON ERIKA",
+    c2:"HABLE CON NOSOTROS",
     mfTi:"Más que una agencia inmobiliaria.<br>Un aliado en su próximo capítulo.",
     mfTx:"<p>En OceanSide Properties creemos que encontrar un hogar es mucho más que comprar una propiedad: se trata de crear una vida que se sienta a su medida. Ya sea que esté dando su primer paso hacia una casa propia, buscando un lugar para crecer juntos, invirtiendo en nuevas oportunidades o comenzando un capítulo más pausado y significativo junto al mar, estamos aquí para acompañarle en cada paso del camino.</p><p>Desde descubrir la propiedad ideal y explorar sus opciones hasta guiarle en el proceso de compra y más allá, reunimos experiencia confiable, asesoría personalizada y un servicio de calidad para que el camino sea claro, accesible y gratificante.</p><p class=\"mf-sign\">Sus metas. Su camino. Un lugar que pueda llamar suyo.</p>",
     pEy:"II · PROPIEDADES",
     pTi:"ENCUENTRE UNA PROPIEDAD A SU MEDIDA",
-    pTx:"Explore las oportunidades internacionales disponibles. Si alguna le interesa, pregúntele a Erika: ella le explicará los detalles.",
+    pTx:"Explore las oportunidades internacionales disponibles. Si alguna le interesa, pregúntenos: le explicaremos los detalles.",
     prpOf:"DE",
     prpLbl:"PROPIEDADES",
     prpLoad:"VER",
     prpMore:"MÁS",
     prpLoading:"CARGANDO...",
-    prpAsk:"PREGUNTAR A ERIKA",
+    prpAsk:"PREGUNTAR POR ESTA PROPIEDAD",
     sEy:"IV · SERVICIOS",
-    sTi:"CÓMO PUEDO AYUDARLE",
+    sTi:"CÓMO PODEMOS AYUDARLE",
     srv:[{"k": "first_home", "ti": "Comprar su primera vivienda", "de": "Conozca sus opciones, explore propiedades adecuadas y avance en el proceso de compra con asesoría personalizada."}, {"k": "investment", "ti": "Explorar inversiones inmobiliarias", "de": "Descubra oportunidades, compare los detalles relevantes de cada propiedad y conozca los factores a evaluar antes de tomar una decisión de inversión."}, {"k": "next_chapter", "ti": "Encontrar su próximo capítulo", "de": "Explore propiedades que se ajusten a su estilo de vida, a la ubicación que prefiere y a sus planes para su próximo capítulo."}],
     srvCta:"EXPLORAR SUS OPCIONES",
     iEy:"V · INVERTIR",
@@ -1340,18 +1340,18 @@ const L = {
     gTi:"BIENES RAÍCES, CON CLARIDAD",
     gTx:"Algunos puntos esenciales que conviene entender antes de empezar su búsqueda.",
     edu:[{"ti": "Comprar su primera propiedad en México", "tx": "Los compradores extranjeros pueden ser propietarios en México. En la zona restringida de la costa mexicana, esto suele hacerse mediante un fideicomiso bancario, y toda compraventa se formaliza ante notario público."}, {"ti": "Entender los costos de compra", "tx": "Además del precio, considere los gastos de cierre, como el impuesto de adquisición, los honorarios notariales, el avalúo y el registro, más las cuotas del fideicomiso si compra por esa vía. Los montos varían, así que pida un desglose desde el inicio."}, {"ti": "Elegir la zona adecuada", "tx": "Playa del Carmen, Tulum, Puerto Morelos y Cancún ofrecen ritmos, rangos de precio y estilos de vida distintos. Empiece por cómo planea usar la propiedad —vivir, vacacionar o rentar— y a partir de ahí acote la búsqueda."}],
-    eduAsk:"PREGUNTAR A ERIKA",
+    eduAsk:"PREGÚNTENOS",
     tEy:"VIII · TRABAJAR JUNTOS",
-    tTi:"QUÉ ESPERAR AL TRABAJAR CON ERIKA",
+    tTi:"QUÉ ESPERAR AL TRABAJAR CON OCEANSIDE",
     exp:[{"ti": "Atención personalizada", "tx": "Sus metas, su presupuesto y sus tiempos guían cada recomendación."}, {"ti": "Comunicación clara", "tx": "Respuestas directas y en lenguaje sencillo; ninguna pregunta es demasiado básica."}, {"ti": "Asesoría según sus metas", "tx": "Ya sea una primera vivienda, una inversión o un nuevo capítulo, la asesoría se adapta a su momento."}],
     tst:[{"tx": "Nuestra experiencia con OceanSide Properties fue excepcional. Su equipo nos guió en cada paso, ofreciendo un servicio personalizado para encontrar nuestra casa soñada.", "au": "Aline & Martin Rieu"}, {"tx": "La renta de nuestra villa vacacional se realizó sin contratiempos gracias al profesionalismo del equipo. Estamos encantados con su servicio.", "au": "Sophie Duchamps"}, {"tx": "Como inversionista, quedé impresionado por el profundo conocimiento del mercado que me permitió realizar una inversión altamente rentable.", "au": "Paul Simon"}],
     cEy:"IX · CONTACTO",
     cTi:"HABLEMOS DE SU PRÓXIMO CAPÍTULO",
-    cIntro:"Cuénteme qué busca, qué es importante para usted y en qué punto del proceso se encuentra. Exploraremos juntos sus opciones, sin presión por tenerlo todo resuelto desde el principio.",
+    cIntro:"Cuéntenos qué busca, qué es importante para usted y en qué punto del proceso se encuentra. Exploraremos juntos sus opciones, sin presión por tenerlo todo resuelto desde el principio.",
     cPh:"Teléfono",
     cEm:"Correo",
     cWa:"WhatsApp",
-    cWaTx:"Escribir a Erika",
+    cWaTx:"Escríbanos",
     fN:"Nombre",
     fMt:"Medio de contacto preferido",
     fMo:["WhatsApp", "Llamada", "Correo"],
@@ -1364,7 +1364,7 @@ const L = {
     fBo:["Menos de US$150 mil", "US$150–300 mil", "US$300–500 mil", "Más de US$500 mil", "Prefiero no decirlo"],
     fM:"Mensaje (opcional)",
     fS:"ENVIAR MENSAJE",
-    msg:{"errT": "Faltan datos", "errN": "Por favor escriba su nombre.", "errC": "Por favor indique cómo contactarle: correo o teléfono.", "okT": "Mensaje enviado", "okS": "Gracias. Erika se pondrá en contacto con usted pronto.", "failT": "Error al enviar", "failS": "Haga clic abajo para enviar su mensaje por correo.", "tryA": "REINTENTAR", "close": "CERRAR", "mail": "ENVIAR POR CORREO", "sending": "ENVIANDO…"},
+    msg:{"errT": "Faltan datos", "errN": "Por favor escriba su nombre.", "errC": "Por favor indique cómo contactarle: correo o teléfono.", "okT": "Mensaje enviado", "okS": "Gracias. Nos pondremos en contacto con usted pronto.", "failT": "Error al enviar", "failS": "Haga clic abajo para enviar su mensaje por correo.", "tryA": "REINTENTAR", "close": "CERRAR", "mail": "ENVIAR POR CORREO", "sending": "ENVIANDO…"},
     ftL:"Aviso Legal",
     ftP:"Privacidad",
     ftC:"Cookies",
@@ -1375,8 +1375,8 @@ const L = {
     arCta:"EXPLORAR LA ZONA",
     arRegion:"QUINTANA ROO · MÉXICO",
     arProps:"VER PROPIEDADES EN {a}",
-    arAsk:"PREGUNTAR A ERIKA SOBRE {a}",
-    arHelp:"¿Quiere saber cómo es realmente vivir o comprar aquí? Pregúntele a Erika: le compartirá orientación práctica para su caso.",
+    arAsk:"PREGÚNTENOS SOBRE {a}",
+    arHelp:"¿Quiere saber cómo es realmente vivir o comprar aquí? Pregúntenos: le compartiremos orientación práctica para su caso.",
     igEy:"III · ESTILO DE VIDA",
     igTi:"LA VIDA MÁS ALLÁ DE LA PROPIEDAD",
     igTx:"Descubra los lugares, los espacios y los pequeños momentos que hacen que un nuevo lugar se sienta como en casa.",
@@ -1493,7 +1493,7 @@ function openArea(key, fromHash){
     ? rows.map(k=>`<div class="am-row"><span class="am-lbl">${lbl[k]}</span><p>${det[k]}</p></div>`).join('')
     : `<p class="am-help">${t.arHelp}</p>`;
   const props = 'collection.html?city=' + encodeURIComponent(a.city) + (lang==='es' ? '&lang=es' : '');
-  const msg = lang==='es' ? `Hola Erika, me gustaría saber más sobre ${a.name}.` : `Hi Erika, I’d like to know more about ${a.name}.`;
+  const msg = lang==='es' ? `Hola OceanSide, me gustaría saber más sobre ${a.name}.` : `Hi OceanSide, I’d like to know more about ${a.name}.`;
   g('amActs').innerHTML = `
     <a class="btn-g" href="${props}">${t.arProps.replace('{a}', a.name)}</a>
     <a class="am-ask prp-lk" href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">${t.arAsk.replace('{a}', a.name)}</a>`;
